@@ -23,13 +23,7 @@
                     </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
-                    <div class="text-center text-muted mb-4">
-                        <small>
-                            Create new account OR Sign in with these credentials:
-                            <br>
-                            Username <strong>admin@argon.com</strong> Password: <strong>secret</strong>
-                        </small>
-                    </div>
+
                     <form role="form" method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -63,15 +57,8 @@
                             </span>
                             @endif
                         </div>
-                        <div class="custom-control custom-control-alternative custom-checkbox">
-                            <input class="custom-control-input" name="remember" id="customCheckLogin" type="checkbox"
-                                {{ old('remember') ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="customCheckLogin">
-                                <span class="text-muted">{{ __('Remember me') }}</span>
-                            </label>
-                        </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary my-4">{{ __('Sign in') }}</button>
+                            <button type="submit" class="btn btn-primary my-4">Connexion</button>
                         </div>
                     </form>
                 </div>
@@ -80,15 +67,11 @@
                 <div class="col-6">
                     @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="text-light">
-                        <small>{{ __('Forgot password?') }}</small>
+                        <small>Mot de passe oublié? </small>
                     </a>
                     @endif
                 </div>
-                <div class="col-6 text-right">
-                    <a href="{{ route('register') }}" class="text-light">
-                        <small>{{ __('Create new account') }}</small>
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>
