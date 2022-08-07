@@ -11,15 +11,16 @@ class analysesController extends Controller
         $this->middleware('auth');
     }
 
-     public function getAllAnalyses() {
-        $user = Auth::user();
+        public function getAllAnalyses() {
 
-        $analyses = Analyse::all()->get();
+        $analyses = Analyse::paginate(10);
 
         return view('analyses', [
             'analyses' => $analyses
         ]);
     }
+
+
 
       public function findeById($id) {
 

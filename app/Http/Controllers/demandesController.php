@@ -8,14 +8,25 @@ use Illuminate\Http\Request;
 class demandesController extends Controller
 {
      public function getAlldemandes() {
-        $user = Auth::user();
 
-        $demandes = Demande::all()->get();
+        $demandes = Demande::paginate(10);
 
         return view('demandes', [
             'demandes' => $demandes
         ]);
     }
+
+     public function create(Request $request) {
+
+        $clients = Client::all();
+        $tasks = Task::all();
+
+        return view('demande', [
+            'clients' => $clients,
+            'tasks' => $tasks
+        ]);
+    }
+
 
       public function findeById($id) {
 

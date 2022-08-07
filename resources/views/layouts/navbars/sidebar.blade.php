@@ -84,20 +84,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.index') }}">
+                    <a class="nav-link" href="{{ route('all_analyses') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
                         Liste analyses
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
+                    <a class="nav-link" href="{{ route('demandes') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
                         <span class="nav-link-text">Liste demandes</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('map') }}">
+                    <a class="nav-link" href="{{ route('demande-add') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
                         Ajouter une demande
                     </a>
