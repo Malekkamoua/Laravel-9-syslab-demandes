@@ -31,11 +31,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('analyses', 'App\Http\Controllers\analysesController@getAllAnalyses')->name('all_analyses');
     Route::get('demandes', 'App\Http\Controllers\demandesController@getAlldemandes')->name('demandes');
+    Route::get('demandes/ajouter', 'App\Http\Controllers\demandesController@create')->name('demande-add');
+    Route::post('store', [App\Http\Controllers\demandesController::class, 'store'])->name('store');
+    Route::get('demande/edit/{id}', [App\Http\Controllers\demandesController::class, 'edit'])->name('demande-edit');
+    Route::post('update/{id}', [App\Http\Controllers\demandesController::class, 'update'])->name('update');
+    Route::post('/delete/{id}', [App\Http\Controllers\demandesController::class, 'delete'])->name('demande-delete');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade');
-	Route::get('demandes/ajouter', function () {return view('demande-add');})->name('demande-add');
-	Route::get('icons', function () {return view('pages.icons');})->name('icons');
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });

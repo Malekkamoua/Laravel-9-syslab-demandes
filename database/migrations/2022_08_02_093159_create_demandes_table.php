@@ -17,38 +17,36 @@ return new class extends Migration
 
             //Info patient
             $table->bigIncrements('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('civ');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('sexe');
             $table->date('ddn');
+            $table->string('num_carte');
+            $table->string('num_dossier');
 
             //Info examens
-            $table->string('date_prelev');
+            $table->datetime('date_prelev');
             $table->string('type_dossier');
-            $table->string('type_tube');
-            $table->integer('nb_tube');
-            $table->json('examens');
+            $table->string('etat_dossier')->default('en cours');
+            $table->integer('nb_tubes');
+            $table->string('t_ambiante')->default('0');
+            $table->string('t_ref')->default('0');
+            $table->string('t_cong')->default('0');
+            $table->json('analyses');
 
             //Examen Trisomie 21
-            $table->string('origine')->nullable();
-            $table->float('taille', 3, 2)->nullable();
-            $table->float('poids', 3, 2)->nullable();
-            $table->boolean('tabagisme')->nullable()->default(0);
-            $table->boolean('diabete')->nullable()->default(0);
-            $table->boolean('fiv')->nullable()->default(0);
+            $table->string('taille')->nullable();
+            $table->string('poids')->nullable();
+            $table->date('ddr')->nullable();
+            $table->date('ddg')->nullable();
             $table->integer('nb_foetus')->nullable();
-            $table->integer('age_sem')->nullable();
-            $table->integer('age_jours')->nullable();
-            $table->integer('trimestre')->nullable();
 
-            $table->unsignedBigInteger('user_id');
+            $table->string('commentaires')->nullable();
 
             $table->timestamps();
         });
 
-        Schema::table('demandes', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
-        });
+
     }
 
     /**

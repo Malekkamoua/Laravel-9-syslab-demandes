@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <h5>Informations du patient</h5>
                                 <hr>
-                                <form action="/store" method="post">
+                                <form action="{{ url('/update/'.$demande->id) }}" method="post">
                                     {{ csrf_field() }}
 
                                     <div class="row">
@@ -22,17 +22,18 @@
                                             <div class="form-group">
                                                 <label>N° carte patient</label>
                                                 <input type="number" min=0 name="num_carte" class="form-control"
-                                                    placeholder="Numéro carte patient">
+                                                    placeholder="Numéro carte patient"
+                                                    value="{{ $demande->num_carte }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Nom</label>
                                                 <input type="text" name="nom" class="form-control"
-                                                    placeholder="Nom du patient">
+                                                    placeholder="Nom du patient" value="{{ $demande->nom }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Prenom</label>
                                                 <input type="text" name="prenom" class="form-control"
-                                                    placeholder="Prenom du patient">
+                                                    placeholder="Prenom du patient" value="{{ $demande->prenom }}">
                                             </div>
 
                                         </div>
@@ -40,15 +41,21 @@
                                             <div class="form-group">
                                                 <label>Numéro dossier interne</label>
                                                 <input type="number" min=0 name="num_dossier" class="form-control"
-                                                    placeholder="Num dossier interne">
+                                                    placeholder="Num dossier interne"
+                                                    value="{{ $demande->num_dossier }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Date de naissance</label>
-                                                <input type="date" name="ddn" class="form-control" placeholder="Text">
+                                                <input type="date" name="ddn" class="form-control" placeholder="Text"
+                                                    value="{{ $demande->ddn }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Sexe</label>
-                                                <select name="sexe" class="form-control" id="exampleFormControlSelect1">
+                                                <select name="sexe" class="form-control">
+
+                                                    <option value="{{ $demande->sexe }}">{{ $demande->sexe }}
+                                                    </option>
+                                                    <option value="" disabled> -------- </option>
                                                     <option value="Homme">Homme</option>
                                                     <option value="Femme">Femme</option>
                                                 </select>
@@ -63,25 +70,30 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Date du prélevement</label>
-                                                <input name="date_prelev" type="datetime-local" class="form-control">
+                                                <input name="date_prelev" type="datetime-local" class="form-control"
+                                                    value="{{ $demande->date_prelev }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Nombre de tubes</label>
-                                                <input type="number" name="nb_tubes" min=0 class="form-control">
+                                                <input type="number" name="nb_tubes" min=0 class="form-control"
+                                                    value="{{ $demande->nb_tubes }}">
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <label for="inputCity">Température ambiante</label>
-                                                    <input type=number name="t_amb" min=0 class="form-control">
+                                                    <input type=number name="t_amb" min=0 class="form-control"
+                                                        value="{{ $demande->t_ambiante }}">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="inputZip"> Refrégeré</label>
-                                                    <input type=number name="t_ref" min=0 class="form-control">
+                                                    <input type=number name="t_ref" min=0 class="form-control"
+                                                        value="{{ $demande->t_ref }}">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="inputZip">Congelé</label>
-                                                    <input type=number name="t_cong" min=0 class="form-control">
+                                                    <input type=number name="t_cong" min=0 class="form-control"
+                                                        value="{{ $demande->t_cong }}">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -89,6 +101,10 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Type dossier</label>
                                                         <select name="type_dossier" class="form-control">
+                                                            <option value="{{ $demande->type_dossier }}">
+                                                                {{ $demande->type_dossier }}
+                                                            </option>
+                                                            <option value="" disabled> -------- </option>
                                                             <option value="Urgent">Urgent</option>
                                                             <option value="Normal">Normal</option>
                                                         </select>
@@ -101,7 +117,8 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Analyses</label>
                                                         <select name="analyses[]" class="form-control">
-                                                            <option value=""></option>
+                                                            <option value="{{ $demande->analyse }}">
+                                                                {{ $demande->analyse }}</option>
                                                             @foreach($analyses as $analyse)
                                                             <option value="{{$analyse->code}}"> {!!
                                                                 Str::words($analyse->nom, 3,
@@ -111,6 +128,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
 
@@ -120,52 +138,50 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Date dernier rendez-vous</label>
-                                                <input type="date" name="ddr" class="form-control">
+                                                <input type="date" name="ddr" class="form-control"
+                                                    value="{{ $demande->ddr }}">
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Date début grosesse</label>
-                                                <input type="date" name="ddg" class="form-control">
+                                                <input type="date" name="ddg" class="form-control"
+                                                    value="{{ $demande->ddg }}">
                                             </div>
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label>Nombre de foetus</label>
                                                     <input type="number" name="nb_foetus" class="form-control"
-                                                        id="taille" placeholder="1">
+                                                        placeholder="1" value="{{ $demande->nb_foetus }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputCity">Taille</label>
                                                     <input type="number" class="form-control" name="taille"
-                                                        placeholder="160cm">
+                                                        placeholder="160cm" value="{{ $demande->taille }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputZip">Poids</label>
                                                     <input type="number" class="form-control" name="poids"
-                                                        placeholder="56Kg">
+                                                        value="{{ $demande->poids }}" placeholder="56Kg">
                                                 </div>
                                             </div>
                                             <hr>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Commentaires
                                                     supplémentaires</label>
-                                                <textarea class="form-control" name="commentaires" rows="3"></textarea>
+                                                <textarea class="form-control" name="commentaires"
+                                                    rows="3">{{ $demande->commentaires }}</textarea>
                                             </div>
 
                                             <br>
                                             <input class="btn btn-success" style="float:right" type="submit"
-                                                value="Enregistrer">
+                                                value="Mettre à jour">
                                 </form>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
-            <!-- [ Main Content ] end -->
-
         </div>
     </div>
 

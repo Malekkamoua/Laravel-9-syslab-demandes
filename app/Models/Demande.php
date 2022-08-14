@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Analyse;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Demande extends Model
 {
@@ -20,4 +21,9 @@ class Demande extends Model
         'type_tube',
         'nb_tube',
     ];
+
+     public function analyes() {
+
+        return $this->hasMany(Analyse::class);
+    }
 }
