@@ -103,7 +103,7 @@
                                                         <select name="analyses[]" class="form-control">
                                                             <option value=""></option>
                                                             @foreach($analyses as $analyse)
-                                                            <option value="{{$analyse->code}}"> {!!
+                                                            <option value="{{$analyse->id}}"> {!!
                                                                 Str::words($analyse->nom, 3,
                                                                 ' ...') !!} </option>
                                                             @endforeach

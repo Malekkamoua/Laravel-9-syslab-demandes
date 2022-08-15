@@ -36,7 +36,8 @@
                             <tr>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <a data-toggle="modal" data-target="#exampleModalCenter">
+                                    <a data-toggle="modal" data-id="{{ $analyse->id }}"
+                                        data-target="#editModal{{$analyse->id}}">
                                         <b> {!! Str::words($analyse->code, 3, ' ...') !!} </b></a>
 
                                 </td>
@@ -51,7 +52,7 @@
 
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="editModal{{$analyse->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

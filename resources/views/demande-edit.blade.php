@@ -4,7 +4,7 @@
 @include('layouts.headers.cards')
 
 <!-- Page content -->
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7" id="printableArea">
     <div class="row">
         <div class="col">
             <div class="card border-0">
@@ -22,18 +22,17 @@
                                             <div class="form-group">
                                                 <label>N° carte patient</label>
                                                 <input type="number" min=0 name="num_carte" class="form-control"
-                                                    placeholder="Numéro carte patient"
                                                     value="{{ $demande->num_carte }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Nom</label>
                                                 <input type="text" name="nom" class="form-control"
-                                                    placeholder="Nom du patient" value="{{ $demande->nom }}">
+                                                    value="{{ $demande->nom }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Prenom</label>
                                                 <input type="text" name="prenom" class="form-control"
-                                                    placeholder="Prenom du patient" value="{{ $demande->prenom }}">
+                                                    value="{{ $demande->prenom }}">
                                             </div>
 
                                         </div>
@@ -41,12 +40,11 @@
                                             <div class="form-group">
                                                 <label>Numéro dossier interne</label>
                                                 <input type="number" min=0 name="num_dossier" class="form-control"
-                                                    placeholder="Num dossier interne"
                                                     value="{{ $demande->num_dossier }}">
                                             </div>
                                             <div class="form-group">
                                                 <label>Date de naissance</label>
-                                                <input type="date" name="ddn" class="form-control" placeholder="Text"
+                                                <input type="date" name="ddn" class="form-control"
                                                     value="{{ $demande->ddn }}">
                                             </div>
                                             <div class="form-group">
@@ -117,10 +115,10 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Analyses</label>
                                                         <select name="analyses[]" class="form-control">
-                                                            <option value="{{ $demande->analyse }}">
+                                                            <option value="{{ $demande->id }}">
                                                                 {{ $demande->analyse }}</option>
                                                             @foreach($analyses as $analyse)
-                                                            <option value="{{$analyse->code}}"> {!!
+                                                            <option value="{{$analyse->id}}"> {!!
                                                                 Str::words($analyse->nom, 3,
                                                                 ' ...') !!} </option>
                                                             @endforeach
@@ -152,17 +150,17 @@
                                                 <div class="form-group col-md-4">
                                                     <label>Nombre de foetus</label>
                                                     <input type="number" name="nb_foetus" class="form-control"
-                                                        placeholder="1" value="{{ $demande->nb_foetus }}">
+                                                        value="{{ $demande->nb_foetus }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputCity">Taille</label>
                                                     <input type="number" class="form-control" name="taille"
-                                                        placeholder="160cm" value="{{ $demande->taille }}">
+                                                        value="{{ $demande->taille }}">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputZip">Poids</label>
                                                     <input type="number" class="form-control" name="poids"
-                                                        value="{{ $demande->poids }}" placeholder="56Kg">
+                                                        value="{{ $demande->poids }}">
                                                 </div>
                                             </div>
                                             <hr>
@@ -174,8 +172,11 @@
                                             </div>
 
                                             <br>
-                                            <input class="btn btn-success" style="float:right" type="submit"
-                                                value="Mettre à jour">
+                                            <div style="float:right">
+                                                <input type="button" class="btn btn-info"
+                                                    onclick="printDiv('printableArea')" value="Imprimer" />
+                                                <input class="btn btn-success" type="submit" value="Mettre à jour">
+                                            </div>
                                 </form>
                             </div>
                         </div>
@@ -192,4 +193,16 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+<script>
+function printDiv(divName) {
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+}
+</script>
 @endpush
