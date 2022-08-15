@@ -175,6 +175,7 @@
                                             <div style="float:right">
                                                 <input type="button" class="btn btn-info"
                                                     onclick="printDiv('printableArea')" value="Imprimer" />
+
                                                 <input class="btn btn-success" type="submit" value="Mettre à jour">
                                             </div>
                                 </form>

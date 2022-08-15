@@ -36,8 +36,7 @@
                             <tr>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <a data-toggle="modal" data-id="{{ $analyse->id }}"
-                                        data-target="#editModal{{$analyse->id}}">
+                                    <a data-toggle="modal" data-id="editModal" data-target="#editModal">
                                         <b> {!! Str::words($analyse->code, 3, ' ...') !!} </b></a>
 
                                 </td>
@@ -52,7 +51,7 @@
 
                             </tr>
                             <!-- Modal -->
-                            <div class="modal fade" id="editModal{{$analyse->id}}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -99,4 +98,12 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
+<script>
+$('#editModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('id')
+    console.log(recipient)
+})
+</script>
 @endpush
