@@ -10,7 +10,7 @@ class demandesController extends Controller
 {
      public function getAlldemandes() {
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(10);
+        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
         return view('demandes', [
             'demandes' => $demandes
@@ -60,7 +60,7 @@ class demandesController extends Controller
 
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(10);
+        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
         return view('demandes', [
             'demandes' => $demandes
@@ -112,7 +112,7 @@ class demandesController extends Controller
 
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(10);
+        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
         return view('demandes', [
             'demandes' => $demandes

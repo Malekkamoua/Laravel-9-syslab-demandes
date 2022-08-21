@@ -13,7 +13,7 @@ class analysesController extends Controller
 
         public function getAllAnalyses() {
 
-        $analyses = Analyse::paginate(10);
+        $analyses = Analyse::paginate(25);
 
         return view('analyses', [
             'analyses' => $analyses
@@ -22,12 +22,12 @@ class analysesController extends Controller
 
 
 
-      public function findeById($id) {
+      public function findeByCode($code) {
 
-        $analyse = Analyse::findOrFail($id);
+        $analyse = Analyse::where('code', $code)->first();
 
-        return view('analyse', [
-            'analyse' => $analyse
-        ]);
+        return response()->json([
+	      'analyse' => $analyse
+	    ]);
     }
 }

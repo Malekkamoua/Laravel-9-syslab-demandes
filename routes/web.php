@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 
     Route::get('analyses', 'App\Http\Controllers\analysesController@getAllAnalyses')->name('all_analyses');
+    Route::get('analyse/{code}', 'App\Http\Controllers\analysesController@findeByCode')->name('analyse_by_code');
+
     Route::get('demandes', 'App\Http\Controllers\demandesController@getAlldemandes')->name('demandes');
     Route::get('demandes/ajouter', 'App\Http\Controllers\demandesController@create')->name('demande-add');
     Route::post('store', [App\Http\Controllers\demandesController::class, 'store'])->name('store');

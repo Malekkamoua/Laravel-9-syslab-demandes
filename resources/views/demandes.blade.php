@@ -3,6 +3,15 @@
 @section('content')
 @include('layouts.headers.cards')
 
+<style>
+.dataTables_filter {
+    width: 60%;
+    position: relative;
+    left: 62%;
+    margin-bottom: 1%;
+}
+</style>
+
 <!-- Page content -->
 <div class="container-fluid mt--7">
     <div class="row">
@@ -12,14 +21,14 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Liste analyses disponibles</h3>
+                            <h3 class="mb-0">Liste demandes</h3>
                         </div>
                     </div>
                 </div>
                 <!-- Light table -->
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
+                <div class="table-responsive" style="width:100%; margin:1%">
+                    <table id="example" class="display hover table align-items-center table-flush">
+                        <thead>
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Num dossier</th>
@@ -56,17 +65,17 @@
                             </tr>
                             @endforeach
                         </tbody>
+
                     </table>
-                    <br>
-
+                    <br><br>
                     <div style="float:right">{!! $demandes->links() !!}</div>
-
-
                 </div>
 
             </div>
         </div>
     </div>
+
+
     @include('layouts.footers.auth')
 </div>
 @endsection
@@ -74,4 +83,44 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+        paging: false,
+        info: false,
+        "language": {
+            "sProcessing": "Traitement en cours ...",
+            "sLengthMenu": "Afficher _MENU_ lignes",
+            "sZeroRecords": "Aucun résultat trouvé",
+            "sEmptyTable": "Aucune donnée disponible",
+            "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+            "sInfoEmpty": "Aucune ligne affichée",
+            "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+            "sInfoPostFix": "",
+            "sSearch": "Recherche par mot clé ",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Chargement...",
+            "oPaginate": {
+                "sFirst": "Premier",
+                "sLast": "Dernier",
+                "sNext": "Suivant",
+                "sPrevious": "Précédent"
+            },
+            "oAria": {
+                "sSortAscending": ": Trier par ordre croissant",
+                "sSortDescending": ": Trier par ordre décroissant"
+            }
+        }
+    });
+});
+</script>
+<script>
+$('#editModal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('id')
+    console.log(recipient)
+})
+</script>
 @endpush

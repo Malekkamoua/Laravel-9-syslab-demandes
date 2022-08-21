@@ -100,7 +100,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Analyses</label>
-                                                        <select name="analyses[]" class="form-control">
+                                                        <select name="analyses[]" class="form-control selectpicker"
+                                                            multiple data-live-search="true" style="height:50px;">
                                                             <option value=""></option>
                                                             @foreach($analyses as $analyse)
                                                             <option value="{{$analyse->id}}"> {!!
@@ -177,3 +178,9 @@
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush
+
+<script>
+$(document).ready(function() {
+    $('select').selectpicker();
+})
+</script>
