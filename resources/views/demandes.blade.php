@@ -115,11 +115,5 @@ $(document).ready(function() {
     });
 });
 </script>
-<script>
-$('#editModal').on('show.bs.modal', function(event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('id')
-    console.log(recipient)
-})
-</script>
+
 @endpush
