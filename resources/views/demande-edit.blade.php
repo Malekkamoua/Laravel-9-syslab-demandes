@@ -118,7 +118,7 @@
                                                                 <option value="{{ $demande->id }}">
                                                                     {{ $demande->analyse }}</option>
                                                                 @foreach($analyses as $analyse)
-                                                                <option value="{{$analyse->id}}"> {!!
+                                                                <option value="{{$analyse->code}}"> {!!
                                                                     Str::words($analyse->nom, 3,
                                                                     ' ...') !!} </option>
                                                                 @endforeach
