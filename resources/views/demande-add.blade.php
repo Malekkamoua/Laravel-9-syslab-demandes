@@ -104,7 +104,7 @@
                                                             multiple data-live-search="true" style="height:50px;">
                                                             <option value=""></option>
                                                             @foreach($analyses as $analyse)
-                                                            <option value="{{$analyse->id}}"> {!!
+                                                            <option value="{{$analyse->code}}"> {!!
                                                                 Str::words($analyse->nom, 3,
                                                                 ' ...') !!} </option>
                                                             @endforeach
