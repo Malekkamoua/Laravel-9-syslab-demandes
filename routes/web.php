@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\analysesController;
 use App\Http\Controllers\demandesController;
 
@@ -38,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('demande/edit/{id}', [App\Http\Controllers\demandesController::class, 'edit'])->name('demande-edit');
     Route::post('update/{id}', [App\Http\Controllers\demandesController::class, 'update'])->name('update');
     Route::post('/delete/{id}', [App\Http\Controllers\demandesController::class, 'delete'])->name('demande-delete');
+
+    Route::get('demande/pdf/{id}', [PDFController::class, 'generatePDF']);
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

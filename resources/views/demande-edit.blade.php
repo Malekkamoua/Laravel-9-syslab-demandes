@@ -176,8 +176,9 @@
 
                                     </div>
                                     <div style="float:right">
-                                        <input type="button" class="btn btn-info" onclick="printDiv('printableArea')"
-                                            value="Imprimer" />
+                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info btn-sm">
+                                            PDF
+                                        </a>
 
                                         <input class="btn btn-success" type="submit" value="Mettre à jour">
                                     </div>
@@ -201,21 +202,3 @@ $(document).ready(function() {
     });
 })
 </script>
-
-<script>
-function printDiv(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-
-    document.body.innerHTML = printContents;
-
-    window.print();
-
-    document.body.innerHTML = originalContents;
-}
-<<<<<<< Updated upstream
-</script>
-@endpush
-=======
-</script>
->>>>>>> Stashed changes

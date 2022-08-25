@@ -13,7 +13,6 @@ class Demande extends Model
         protected $fillable = [
         'firstname',
         'lastname',
-        'civ',
         'ddn',
         'date_prelev',
         'type_dossier',
@@ -22,7 +21,7 @@ class Demande extends Model
         'nb_tube',
     ];
 
-     public function analyes() {
+     public function getAllAnalyses() {
 
         return $this->hasMany(Analyse::class);
     }

@@ -34,7 +34,6 @@ class demandesController extends Controller
         $demande->nom = $request->input('nom');
         $demande->prenom = $request->input('prenom');
         $demande->sexe = $request->input('sexe');
-        $demande->analyses = json_encode($request->input('analyses'));
         $demande->ddn = $request->input('ddn');
         $demande->num_carte = $request->input('num_carte');
         $demande->num_dossier = $request->input('num_dossier');
@@ -58,7 +57,16 @@ class demandesController extends Controller
         //Autres
         $demande->commentaires = $request->input('commentaires');
 
-        $demande->save();
+        $analyses_req = $request->input('analyses');
+
+        $analyses_db_array = [];
+
+        foreach ($analyses_req as $analyse) {
+            $analyse_db = Analyse::where('code', $analyse)->first();
+            array_push($analyses_db_array, $analyse_db);
+        }
+
+        $demande->analyses = $analyses_db_array;
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
@@ -70,11 +78,19 @@ class demandesController extends Controller
     public function edit(Request $request, $id) {
 
         $demande = Demande::find($id);
-        $analyses = Analyse::all();
+        $analyses_all = Analyse::all();
+
+        $analyses_db_array = [];
+
+        foreach (json_decode($demande->analyses) as $analyse) {
+            $analyse_db = Analyse::where('code', $analyse)->first();
+            array_push($analyses_db_array, $analyse_db);
+        }
 
         return view('demande-edit', [
             'demande' => $demande,
-            'analyses' => $analyses,
+            'selected_analyses' => $analyses_db_array,
+            'analyses' => $analyses_all,
             ]);
     }
 
@@ -86,13 +102,11 @@ class demandesController extends Controller
         $demande->nom = $request->input('nom');
         $demande->prenom = $request->input('prenom');
         $demande->sexe = $request->input('sexe');
-        $demande->analyses = json_encode($request->input('analyses'));
         $demande->ddn = $request->input('ddn');
         $demande->num_carte = $request->input('num_carte');
         $demande->num_dossier = $request->input('num_dossier');
 
         //Info analyses
-        $demande->analyses = json_encode($request->input('analyses'));
         $demande->date_prelev = $request->input('date_prelev');
         $demande->type_dossier = $request->input('type_dossier');
         $demande->nb_tubes = $request->input('nb_tubes');
@@ -110,7 +124,16 @@ class demandesController extends Controller
         //Autres
         $demande->commentaires = $request->input('commentaires');
 
-        $demande->save();
+        $analyses_req = $request->input('analyses');
+
+        $analyses_db_array = [];
+
+        foreach ($analyses_req as $analyse) {
+            $analyse_db = Analyse::where('code', $analyse)->first();
+            array_push($analyses_db_array, $analyse_db);
+        }
+
+        $demande->analyses = $analyses_db_array;
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
