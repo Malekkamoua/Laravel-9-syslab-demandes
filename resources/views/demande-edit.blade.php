@@ -114,7 +114,8 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="exampleFormControlSelect1">Analyses</label>
-                                                            <select name="analyses[]" class="form-control">
+                                                            <select name="analyses[]" class="form-control selectpicker"
+                                                                multiple multiple data-actions-box="true">
                                                                 <option value="{{ $demande->id }}">
                                                                     {{ $demande->analyse }}</option>
                                                                 @foreach($analyses as $analyse)
@@ -193,8 +194,13 @@
 </div>
 @endsection
 
-@push('js')
-
+<script>
+$(document).ready(function() {
+    $('select').selectpicker({
+        noneSelectedText: 'Choisir le(s) analyses demandé(s)'
+    });
+})
+</script>
 
 <script>
 function printDiv(divName) {
@@ -207,5 +213,9 @@ function printDiv(divName) {
 
     document.body.innerHTML = originalContents;
 }
+<<<<<<< Updated upstream
 </script>
 @endpush
+=======
+</script>
+>>>>>>> Stashed changes
