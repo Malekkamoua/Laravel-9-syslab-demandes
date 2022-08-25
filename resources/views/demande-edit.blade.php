@@ -176,7 +176,7 @@
 
                                     </div>
                                     <div style="float:right">
-                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info btn-sm">
+                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info">
                                             PDF
                                         </a>
 
