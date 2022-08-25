@@ -5,11 +5,11 @@
 
 <div class="container mt--8 pb-5">
     <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7">
+        <div class="col-lg-5 col-md-7" style="position: relative;top: -140px;">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-body px-lg-5 py-lg-5">
                     <div class="text-center text-muted mb-4">
-                        <small>{{ __('Reset Password') }}</small>
+                        <small>{{ __('Changer mot de passe') }}</small>
                     </div>
                     <form role="form" method="POST" action="{{ route('password.update') }}">
                         @csrf
@@ -37,7 +37,7 @@
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
                                 <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                    name="password" placeholder="{{ __('Password') }}" type="password" required>
+                                    name="password" placeholder="{{ __('Mot de passe') }}" type="password" required>
                             </div>
                             @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
@@ -51,11 +51,11 @@
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
                                 <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password"
-                                    name="password_confirmation" required>
+                                    name="confirmation du mot de passe" required>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary my-4">{{ __('Reset Password') }}</button>
+                            <button type="submit" class="btn btn-primary my-4">{{ __('Changer mot de passe') }}</button>
                         </div>
                     </form>
                 </div>

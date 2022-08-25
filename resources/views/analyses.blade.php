@@ -106,7 +106,7 @@
 <script>
 $(document).ready(function() {
     console.log("working")
-    $("a").click(function() {
+    $("#example a").click(function() {
         let code = $(this).data('id');
         console.log(code)
         $.get('http://127.0.0.1:8000/analyse/' + code, function(data) {
@@ -117,7 +117,6 @@ $(document).ready(function() {
             $('#nature_cond').val(data.analyse.nature_cond);
             $('#concervation').val(data.analyse.concervation);
             $('#delai').val(data.analyse.delai);
-
         })
     });
 });
