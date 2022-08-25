@@ -35,11 +35,11 @@ return new class extends Migration
             $table->json('analyses');
 
             //Examen Trisomie 21
-            $table->string('taille')->nullable();
-            $table->string('poids')->nullable();
+            $table->string('taille')->default('0');
+            $table->string('poids')->default('0');
             $table->date('ddr')->nullable();
             $table->date('ddg')->nullable();
-            $table->integer('nb_foetus')->nullable();
+            $table->string('nb_foetus')->default('0');
 
             $table->string('commentaires')->nullable();
 
