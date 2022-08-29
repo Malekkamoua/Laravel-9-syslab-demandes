@@ -5,17 +5,6 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\analysesController;
 use App\Http\Controllers\demandesController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('home');
 });
@@ -39,13 +28,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('demande/edit/{id}', [App\Http\Controllers\demandesController::class, 'edit'])->name('demande-edit');
     Route::post('update/{id}', [App\Http\Controllers\demandesController::class, 'update'])->name('update');
     Route::post('/delete/{id}', [App\Http\Controllers\demandesController::class, 'delete'])->name('demande-delete');
-
     Route::get('demande/pdf/{id}', [PDFController::class, 'generatePDF']);
 
-    Route::get('employees/', 'App\Http\Controllers\EmployeeController@AllEmployees')->name('all_employees');
-    Route::get('employee/{id}/demandes', 'App\Http\Controllers\EmployeeController@AllDemandesByEmployee')->name('emp_demandes');
-
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+
+
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::get('employees/', 'App\Http\Controllers\EmployeeController@AllEmployees')->name('all_employees');
+        Route::get('employee/{id}/demandes', 'App\Http\Controllers\EmployeeController@AllDemandesByEmployee')->name('emp_demandes');
+    });
+
 });

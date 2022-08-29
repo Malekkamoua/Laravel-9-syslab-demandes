@@ -34,8 +34,8 @@
                                 <th scope="col">Nom prénom</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Tel</th>
-                                <th></th>
-                                <th scope="col">demandes realisés</th>
+                                <th scope="col">Laboratoire</th>
+                                <th scope="col" class="text-center align-middle">Demandes realisées</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,8 +46,8 @@
                                 <td> {{ $employee->name}}</td>
                                 <td> {{ $employee->email}}</td>
                                 <td> 58889750 </td>
-                                <td></td>
-                                <td>
+                                <td> Labo x </td>
+                                <td class="text-center align-middle">
                                     <a href=" {{ url('employee/'.$employee->id.'/demandes/') }}"
                                         class="btn btn-info btn-sm">
                                         Consulter
