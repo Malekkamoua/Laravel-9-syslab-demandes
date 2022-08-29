@@ -115,9 +115,14 @@
                                                         <div class="form-group">
                                                             <label for="exampleFormControlSelect1">Analyses</label>
                                                             <select name="analyses[]" class="form-control selectpicker"
-                                                                multiple multiple data-actions-box="true">
-                                                                <option value="{{ $demande->id }}">
-                                                                    {{ $demande->analyse }}</option>
+                                                                multiple data-actions-box="true">
+                                                                @foreach($selected_analyses as $selected_analyse)
+                                                                <option value="{{$selected_analyse->code}}" selected>
+                                                                    {!!
+                                                                    Str::words($selected_analyse->nom, 3,
+                                                                    ' ...') !!} </option>
+                                                                @endforeach
+                                                                <option disabled> __________ </option>
                                                                 @foreach($analyses as $analyse)
                                                                 <option value="{{$analyse->code}}"> {!!
                                                                     Str::words($analyse->nom, 3,

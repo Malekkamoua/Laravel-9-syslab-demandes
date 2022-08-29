@@ -63,10 +63,12 @@ class demandesController extends Controller
 
         foreach ($analyses_req as $analyse) {
             $analyse_db = Analyse::where('code', $analyse)->first();
-            array_push($analyses_db_array, $analyse_db);
+            array_push($analyses_db_array, $analyse_db->code);
         }
 
-        $demande->analyses = $analyses_db_array;
+        $demande->analyses = json_encode($analyses_db_array);
+
+        $demande->save();
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 
@@ -130,10 +132,12 @@ class demandesController extends Controller
 
         foreach ($analyses_req as $analyse) {
             $analyse_db = Analyse::where('code', $analyse)->first();
-            array_push($analyses_db_array, $analyse_db);
+            array_push($analyses_db_array, $analyse_db->code);
         }
 
-        $demande->analyses = $analyses_db_array;
+        $demande->analyses = json_encode($analyses_db_array);
+
+        $demande->save();
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
 

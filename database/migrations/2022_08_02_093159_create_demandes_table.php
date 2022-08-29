@@ -29,17 +29,17 @@ return new class extends Migration
             $table->string('type_dossier');
             $table->string('etat_dossier')->default('en cours');
             $table->integer('nb_tubes');
-            $table->string('t_ambiante')->default('0');
-            $table->string('t_ref')->default('0');
-            $table->string('t_cong')->default('0');
+            $table->string('t_ambiante')->nullable();
+            $table->string('t_ref')->nullable();
+            $table->string('t_cong')->nullable();
             $table->json('analyses');
 
             //Examen Trisomie 21
-            $table->string('taille')->default('0');
-            $table->string('poids')->default('0');
+            $table->string('taille')->nullable();
+            $table->string('poids')->nullable();
             $table->date('ddr')->nullable();
             $table->date('ddg')->nullable();
-            $table->string('nb_foetus')->default('0');
+            $table->string('nb_foetus')->nullable();
 
             $table->string('commentaires')->nullable();
 

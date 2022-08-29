@@ -73,7 +73,7 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
                                                     <label for="inputCity">Température ambiante</label>
-                                                    <input type=number name="t_amb" min=0 class="form-control">
+                                                    <input type=number name="t_ambiante" min=0 class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="inputZip"> Refrégeré</label>

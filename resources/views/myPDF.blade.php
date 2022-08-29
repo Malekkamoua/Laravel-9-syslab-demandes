@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 
 <center> <img src="https://barounilab.com/wp-content/uploads/2021/11/cropped-logo-BAROUNI.png" alt="logo"></center>
-<h5 class="imgs">
+<h6>
     <center>Laboratoire Nejib Barouni<br> Menzah 6 (Tél: 23 707 465)</center>
-</h5>
-<h4>
+</h6>
+<h2>
     <center>Fiche patient: {{ $demande->nom }} {{ $demande->prenom }}</center>
-</h4>
+</h2>
 <br>
 <!-- Page content -->
 <div class="container-fluid mt--7">
@@ -119,7 +119,7 @@
                                     <div class="col-md-12">
                                         <b>Date dernier rendez-vous:</b>
                                         {{ $demande->ddr }}
-
+                                        <br>
                                         <b>Date début grosesse:</b>
                                         {{ $demande->ddg }}
 
