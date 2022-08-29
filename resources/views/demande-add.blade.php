@@ -22,17 +22,17 @@
                                             <div class="form-group">
                                                 <label>N° carte patient</label>
                                                 <input type="number" min=0 name="num_carte" class="form-control"
-                                                    placeholder="Numéro carte patient">
+                                                    placeholder="Numéro carte patient" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Nom</label>
                                                 <input type="text" name="nom" class="form-control"
-                                                    placeholder="Nom du patient">
+                                                    placeholder="Nom du patient" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Prenom</label>
                                                 <input type="text" name="prenom" class="form-control"
-                                                    placeholder="Prenom du patient">
+                                                    placeholder="Prenom du patient" required>
                                             </div>
 
                                         </div>
@@ -40,11 +40,12 @@
                                             <div class="form-group">
                                                 <label>Numéro dossier interne</label>
                                                 <input type="number" min=0 name="num_dossier" class="form-control"
-                                                    placeholder="Num dossier interne">
+                                                    placeholder="Num dossier interne" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Date de naissance</label>
-                                                <input type="date" name="ddn" class="form-control" placeholder="Text">
+                                                <input type="date" name="ddn" class="form-control" placeholder="Text"
+                                                    required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Sexe</label>

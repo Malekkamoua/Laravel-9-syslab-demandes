@@ -38,8 +38,8 @@
                                 <th scope="col">Num dossier</th>
                                 <th scope="col">Patient</th>
                                 <th scope="col">Date prélévement</th>
+                                <th scope="col">Type dossier</th>
                                 <th scope="col">Etat dossier</th>
-
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -51,8 +51,10 @@
                                 <td>{{$demande->nom}} {{$demande->prenom}} </td>
                                 <td>{{$demande->date_prelev}}</td>
                                 <td> {{$demande->type_dossier}} </td>
+                                <td> {{$demande->etat_dossier}} </td>
+                                <td> {{$demande->etat_dossier}} </td>
                                 <td class="text-center" style="display: flex;">
-                                    @if($demande->etat_dossier == 'en cours')
+                                    @if($demande->etat_dossier == 'en codurs')
                                     <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm">
                                         update
                                     </a>
