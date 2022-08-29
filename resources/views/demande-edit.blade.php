@@ -184,8 +184,9 @@
                                         <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info">
                                             PDF
                                         </a>
-
+                                        @if($demande->etat_dossier == 'en cours')
                                         <input class="btn btn-success" type="submit" value="Mettre à jour">
+                                        @endif
                                     </div>
                                 </form>
                             </div>

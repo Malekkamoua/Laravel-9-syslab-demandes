@@ -23,6 +23,10 @@
                         <div class="col-8">
                             <h3 class="mb-0">Liste demandes</h3>
                         </div>
+                        <a href=" {{ url('demandes/ajouter') }}" style='position:relative; left:20%'
+                            class="btn btn-info btn-sm">
+                            Ajouter demande
+                        </a>
                     </div>
                 </div>
                 <!-- Light table -->
@@ -48,6 +52,7 @@
                                 <td>{{$demande->date_prelev}}</td>
                                 <td> {{$demande->type_dossier}} </td>
                                 <td class="text-center" style="display: flex;">
+                                    @if($demande->etat_dossier == 'en cours')
                                     <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm">
                                         update
                                     </a>
@@ -61,6 +66,11 @@
                                             </button>
                                         </form>
                                     </span>
+                                    @else
+                                    <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-success btn-sm">
+                                        Consulter
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
