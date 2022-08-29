@@ -83,6 +83,15 @@
                     </a>
                 </li>
 
+                @if (auth()->user()->role == 'admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all_employees') }}">
+                        <i class="ni ni-bullet-list-67 text-default"></i>
+                        Liste employés
+                    </a>
+                </li>
+                @endif
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('all_analyses') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>

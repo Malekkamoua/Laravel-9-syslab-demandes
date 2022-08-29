@@ -181,11 +181,11 @@
 
                                     </div>
                                     <div style="float:right">
-                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info">
+                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info btn-sm">
                                             PDF
                                         </a>
                                         @if($demande->etat_dossier == 'en cours')
-                                        <input class="btn btn-success" type="submit" value="Mettre à jour">
+                                        <input class="btn btn-success btn-sm" type="submit" value="Mettre à jour">
                                         @endif
                                     </div>
                                 </form>
@@ -206,5 +206,7 @@ $(document).ready(function() {
     $('select').selectpicker({
         noneSelectedText: 'Choisir le(s) analyses demandé(s)'
     });
+
+
 })
 </script>
