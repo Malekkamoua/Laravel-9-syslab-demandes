@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class demandesController extends Controller
 {
      public function getAlldemandes() {
+        $user = Auth::user();
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
+        if($user->role == "admin") {
+            $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
+        } else{
+            $demandes = Demande::where('user_id', $user_id)->paginate(25);
+        }
 
         return view('demandes', [
             'demandes' => $demandes
@@ -166,6 +171,14 @@ class demandesController extends Controller
         ]);
     }
 
+     public function findeByStatus() {
+
+        $demandes = Demande::where('etat_dossier', $etat_dossier)->paginate(25);
+
+        return view('demandes', [
+            'demandes' => $demandes
+        ]);
+    }
 
       public function delete($id) {
 

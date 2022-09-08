@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/delete/{id}', [App\Http\Controllers\demandesController::class, 'delete'])->name('demande-delete');
     Route::get('demande/pdf/{id}', [PDFController::class, 'generatePDF']);
 
+    Route::get('consulter/demandes/{status}', 'App\Http\Controllers\demandesController@findByStatus')->name('demandes-stat');
+
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

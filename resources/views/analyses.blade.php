@@ -45,8 +45,6 @@
                                 <td>
                                     <a href="" id="editCompany" data-toggle="modal" data-target='#practice_modal'
                                         data-id="{{ $analyse->code }}">{{ $analyse->code }}</a>
-
-
                                 </td>
                                 <td> {!! Str::words($analyse->nom, 3, ' ...') !!} </td>
                                 <td>{!! Str::words($analyse->nature_cond, 3, ' ...') !!}</td>
