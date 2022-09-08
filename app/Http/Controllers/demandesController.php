@@ -91,7 +91,7 @@ class demandesController extends Controller
         $demande = Demande::find($id);
 
         if($demande->etat_dossier == "en cours") {
-                $demande->etat_dossier = 'final';
+                $demande->etat_dossier = 'lu';
                 $demande->save();
             }
 
