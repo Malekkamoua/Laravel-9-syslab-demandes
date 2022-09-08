@@ -17,7 +17,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Informations du patient</h5>
+                                <h5>Informations du patient: {{ $demande->id }}</h5>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -113,6 +113,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                @if($demande->nb_foetus != 0)
                                 <h5 class="mt-5">Trisomie 21</h5>
                                 <hr>
                                 <div class="row">
@@ -137,6 +139,7 @@
                                                 {{ $demande->poids }}
                                             </div>
                                         </div>
+                                        @endif
                                         <hr>
                                         <div class="form-group">
                                             <b for="exampleFormControlTextarea1">Commentaires

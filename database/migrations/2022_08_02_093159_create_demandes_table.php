@@ -43,10 +43,16 @@ return new class extends Migration
 
             $table->string('commentaires')->nullable();
 
+            $table->json('resultats');
+
+            $table->unsignedBigInteger('user_id');
+
             $table->timestamps();
         });
 
-
+            Schema::table('correspondants', function (Blueprint $table) {
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            });
     }
 
     /**

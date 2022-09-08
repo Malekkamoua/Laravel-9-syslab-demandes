@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,15 @@ class EmployeeController extends Controller
          return view('employees', [
             'employees' => $employees
         ]);
+    }
 
+    public function findeByUser($id) {
+        $user = Auth::user();
 
+        $demandes = Demande::where('user_id', $user->id)->get();
+
+           return view('demandes', [
+            'demandes' => $demandes
+        ]);
     }
 }

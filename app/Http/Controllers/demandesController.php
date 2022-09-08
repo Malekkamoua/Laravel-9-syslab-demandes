@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Analyse;
 use App\Models\Demande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class demandesController extends Controller
 {
@@ -27,6 +28,7 @@ class demandesController extends Controller
     }
 
      public function store(Request $request){
+        $user = Auth::user();
 
         $demande = new Demande;
 
@@ -67,6 +69,7 @@ class demandesController extends Controller
         }
 
         $demande->analyses = json_encode($analyses_db_array);
+        $demande->user_id = $user->id;
 
         $demande->save();
 
@@ -79,7 +82,14 @@ class demandesController extends Controller
 
     public function edit(Request $request, $id) {
 
+
         $demande = Demande::find($id);
+
+        if($demande->etat_dossier == "en cours") {
+                $demande->etat_dossier = 'final';
+                $demande->save();
+            }
+
         $analyses_all = Analyse::all();
 
         $analyses_db_array = [];
@@ -97,6 +107,7 @@ class demandesController extends Controller
     }
 
     public function update(Request $request, $id){
+        $user = Auth::user();
 
         $demande = Demande::findOrFail($id);
 
@@ -125,7 +136,6 @@ class demandesController extends Controller
 
         //Autres
         $demande->commentaires = $request->input('commentaires');
-
         $analyses_req = $request->input('analyses');
 
         $analyses_db_array = [];
@@ -137,6 +147,7 @@ class demandesController extends Controller
 
         $demande->analyses = json_encode($analyses_db_array);
 
+        $demande->user_id = $user->id;
         $demande->save();
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
@@ -154,6 +165,7 @@ class demandesController extends Controller
             'demande' => $demande
         ]);
     }
+
 
       public function delete($id) {
 
