@@ -43,15 +43,15 @@ return new class extends Migration
 
             $table->string('commentaires')->nullable();
 
-            $table->json('resultats');
+            $table->json('resultats')->nullable();
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('correspondant');
 
             $table->timestamps();
         });
 
-            Schema::table('correspondants', function (Blueprint $table) {
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            Schema::table('demandes', function (Blueprint $table) {
+                $table->foreign('correspondant')->references('id')->on('users')->onDelete('cascade')->nullable();
             });
     }
 

@@ -10,6 +10,30 @@
     left: 62%;
     margin-bottom: 1%;
 }
+
+.blink {
+    animation: blinker 0.6s linear infinite;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink-one {
+    animation: blinker-one 1s linear infinite;
+}
+
+@keyframes blinker-one {
+    0% {
+        opacity: 0;
+    }
+}
 </style>
 
 <!-- Page content -->
@@ -20,7 +44,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">Demandes</h5>
+                            <h5 class="card-title text-uppercase text-muted mb-0">Total Demandes</h5>
                             <span class="h2 font-weight-bold mb-0">350,897</span>
                         </div>
                     </div>
@@ -32,21 +56,25 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">Demandes en cours</h5>
+                            <h5 class="card-title text-uppercase text-muted mb-0"> <a
+                                    href=" {{ url('consulter/demandes/en%20cours') }}"> Demandes en cours </a></h5>
                             <span class="h2 font-weight-bold mb-0">2,356</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-xl-3 col-lg-6">
             <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0"> <a
-                                    href=" {{ url('consulter/demandes/finales) }}"> Nouveau </a></h5>
-                            <span class="h2 font-weight-bold mb-0">924</span>
+                            <div class="card-title text-uppercase text-muted mb-0"> <a
+                                    href=" {{ url('consulter/demandes/finales') }}">
+                                    <p class="blink blink-one" style="font-size:13px;"> Nouvelles demandes traitées</p>
+                                </a></div>
+                            <span class=" h2 font-weight-bold mb-0">924</span>
                         </div>
                     </div>
                 </div>
@@ -81,6 +109,7 @@
                                 <th scope="col">Date prélévement</th>
                                 <th scope="col">Type dossier</th>
                                 <th scope="col">Etat dossier</th>
+                                <th scope="col">Résultats</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -168,6 +197,9 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+
 
 
 @endpush

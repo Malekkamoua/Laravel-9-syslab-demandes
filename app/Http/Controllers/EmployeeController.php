@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     public function findeByUser($id) {
         $user = Auth::user();
 
-        $demandes = Demande::where('user_id', $user->id)->get();
+        $demandes = Demande::where('correspondant', $user->id)->get();
 
            return view('demandes', [
             'demandes' => $demandes

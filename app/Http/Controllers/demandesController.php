@@ -15,7 +15,7 @@ class demandesController extends Controller
         if($user->role == "admin") {
             $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
         } else{
-            $demandes = Demande::where('user_id', $user_id)->paginate(25);
+            $demandes = Demande::where('correspondant', $user_id)->paginate(25);
         }
 
         return view('demandes', [
@@ -74,7 +74,7 @@ class demandesController extends Controller
         }
 
         $demande->analyses = json_encode($analyses_db_array);
-        $demande->user_id = $user->id;
+        $demande->correspondant = $user->id;
 
         $demande->save();
 
@@ -152,7 +152,7 @@ class demandesController extends Controller
 
         $demande->analyses = json_encode($analyses_db_array);
 
-        $demande->user_id = $user->id;
+        $demande->correspondant = $user->id;
         $demande->save();
 
         $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
@@ -171,7 +171,7 @@ class demandesController extends Controller
         ]);
     }
 
-     public function findeByStatus() {
+     public function findByStatus($etat_dossier) {
 
         $demandes = Demande::where('etat_dossier', $etat_dossier)->paginate(25);
 
