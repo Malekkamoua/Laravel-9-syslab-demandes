@@ -14,7 +14,6 @@
 .blink {
     animation: blinker 0.6s linear infinite;
     color: red;
-    font-size: 30px;
     font-weight: bold;
     font-family: sans-serif;
 }
@@ -45,7 +44,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0">Total Demandes</h5>
-                            <span class="h2 font-weight-bold mb-0">350,897</span>
+                            <span class="h2 font-weight-bold mb-0">{{$total}}</span>
                         </div>
                     </div>
                 </div>
@@ -58,7 +57,7 @@
                         <div class="col">
                             <h5 class="card-title text-uppercase text-muted mb-0"> <a
                                     href=" {{ url('consulter/demandes/en%20cours') }}"> Demandes en cours </a></h5>
-                            <span class="h2 font-weight-bold mb-0">2,356</span>
+                            <span class="h2 font-weight-bold mb-0">{{$en_cours}}</span>
                         </div>
                     </div>
                 </div>
@@ -70,11 +69,20 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <div class="card-title text-uppercase text-muted mb-0"> <a
-                                    href=" {{ url('consulter/demandes/finales') }}">
-                                    <p class="blink blink-one" style="font-size:13px;"> Nouvelles demandes traitées</p>
-                                </a></div>
-                            <span class=" h2 font-weight-bold mb-0">924</span>
+                            @if ($final != 0)
+                            <div class="card-title text-uppercase text-muted mb-0">
+                                <a href=" {{ url('consulter/demandes/finales') }}"
+                                    class=" card-title text-uppercase text-muted mb-0 blink blink-one"
+                                    style="font-size:13px;">
+                                    Nouvelles demandes traitées
+                                </a>
+                            </div>
+                            @else
+                            <div class="card-title text-uppercase text-muted mb-0">
+                                <h5 class="card-title text-uppercase text-muted mb-0">Nouveau</h5>
+                            </div>
+                            @endif
+                            <span class=" h2 font-weight-bold mb-0">{{$final}}</span>
                         </div>
                     </div>
                 </div>
@@ -92,10 +100,12 @@
                         <div class="col-8">
                             <h3 class="mb-0">Liste demandes</h3>
                         </div>
+                        @if(auth()->user()->role == "corr")
                         <a href=" {{ url('demandes/ajouter') }}" style='position:relative; left:20%'
                             class="btn btn-info btn-sm">
                             Ajouter demande
                         </a>
+                        @endif
                     </div>
                 </div>
                 <!-- Light table -->
@@ -197,6 +207,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 
 

@@ -46,6 +46,7 @@ return new class extends Migration
             $table->json('resultats')->nullable();
 
             $table->unsignedBigInteger('correspondant');
+            $table->string('code_labo');
 
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\analysesController;
 use App\Http\Controllers\demandesController;
+use App\Http\Controllers\CustomAuthController;
 
 Route::get('/', function () {
     return view('home');
@@ -12,11 +13,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
+
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 
     Route::get('analyses', 'App\Http\Controllers\analysesController@getAllAnalyses')->name('all_analyses');
@@ -38,8 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::get('employees/', 'App\Http\Controllers\EmployeeController@AllEmployees')->name('all_employees');
-        Route::get('employee/{id}/demandes', 'App\Http\Controllers\EmployeeController@AllDemandesByEmployee')->name('emp_demandes');
+        Route::get('correspondants/', 'App\Http\Controllers\EmployeeController@AllEmployees')->name('all_employees');
+        Route::post('correspondants/add', 'App\Http\Controllers\EmployeeController@addCorrespondant')->name('add_employee');
+        Route::get('correspondants/{id}/demandes', 'App\Http\Controllers\EmployeeController@findByUser')->name('emp_demandes');
     });
 
 });

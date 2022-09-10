@@ -7,19 +7,29 @@ use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class demandesController extends Controller
+class demandescontroller extends Controller
 {
      public function getAlldemandes() {
         $user = Auth::user();
 
         if($user->role == "admin") {
-            $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
+            $demandes = Demande::orderBy('created_at', 'desc')->paginate(25);
+            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours'])->get());
+            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final'])->get());
+            $total = sizeof(Demande::all());
+
         } else{
-            $demandes = Demande::where('correspondant', $user_id)->paginate(25);
+            $demandes = Demande::where(['correspondant'=> $user->id])->paginate(25);
+            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours', 'correspondant'=> $user->id])->get());
+            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final', 'correspondant'=> $user->id])->get());
+            $total = sizeof(Demande::where(['correspondant'=> $user->id])->get());
         }
 
         return view('demandes', [
-            'demandes' => $demandes
+            'demandes' => $demandes,
+            'en_cours' => $total_en_cours,
+            'final' => $total_final,
+            'total' =>$total
         ]);
     }
 
@@ -75,10 +85,11 @@ class demandesController extends Controller
 
         $demande->analyses = json_encode($analyses_db_array);
         $demande->correspondant = $user->id;
+        $demande->code_labo = $user->code_labo;
 
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
+        $demandes = Demande::orderBy('created_at', 'desc')->paginate(25);
 
         return view('demandes', [
             'demandes' => $demandes
@@ -87,10 +98,11 @@ class demandesController extends Controller
 
     public function edit(Request $request, $id) {
 
+        $user = Auth::user();
 
         $demande = Demande::find($id);
 
-        if($demande->etat_dossier == "en cours") {
+        if($demande->etat_dossier == "en cours" && $user->role == "corr") {
                 $demande->etat_dossier = 'lu';
                 $demande->save();
             }
@@ -153,9 +165,11 @@ class demandesController extends Controller
         $demande->analyses = json_encode($analyses_db_array);
 
         $demande->correspondant = $user->id;
+        $demande->code_labo = $user->code_labo;
+
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'DESC')->paginate(25);
+        $demandes = Demande::orderBy('created_at', 'desc')->paginate(25);
 
         return view('demandes', [
             'demandes' => $demandes
@@ -173,10 +187,27 @@ class demandesController extends Controller
 
      public function findByStatus($etat_dossier) {
 
-        $demandes = Demande::where('etat_dossier', $etat_dossier)->paginate(25);
+        $user = Auth::user();
+
+        if($user->role == "admin") {
+            $demandes = Demande::where(['etat_dossier'=> $etat_dossier])->orderBy('created_at', 'desc')->paginate(25);
+            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours'])->get());
+            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final'])->get());
+            $total = sizeof(Demande::all());
+
+        } else{
+            $demandes = Demande::where(['etat_dossier'=> $etat_dossier, 'correspondant'=> $user->id])->paginate(25);
+            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours', 'correspondant'=> $user->id])->get());
+            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final', 'correspondant'=> $user->id])->get());
+            $total = sizeof(Demande::where(['correspondant'=> $user->id])->get());
+        }
+
 
         return view('demandes', [
-            'demandes' => $demandes
+            'demandes' => $demandes,
+            'en_cours' => $total_en_cours,
+            'final' => $total_final,
+            'total' =>$total
         ]);
     }
 
