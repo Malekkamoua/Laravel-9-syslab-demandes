@@ -4,8 +4,7 @@
 @include('users.partials.header', [
 'title' => __('Bonjour') . ' '. auth()->user()->name,
 'description' => __('Ceci est votre page profil. Vous pouvez mettre à jour vos coordonnées ainsi que de changer votre
-mot de
-passe tout en sécurité'),
+mot de passe en toute sécurité.'),
 'class' => 'col-lg-7'
 ])
 
