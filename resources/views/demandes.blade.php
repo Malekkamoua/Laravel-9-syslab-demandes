@@ -2,6 +2,7 @@
 
 @section('content')
 @include('layouts.headers.cards')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 .dataTables_filter {
@@ -43,7 +44,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="card-title text-uppercase text-muted mb-0">Total Demandes</h5>
+                            <h5 class="card-title text-uppercase text-muted mb-0"><a href=" {{ url('demandes') }}">Total
+                                    Demandes</h5>
                             <span class="h2 font-weight-bold mb-0">{{$total}}</span>
                         </div>
                     </div>
@@ -132,9 +134,16 @@
                                 <td>{{$demande->date_prelev}}</td>
                                 <td> {{$demande->type_dossier}} </td>
                                 <td> {{$demande->etat_dossier}} </td>
-                                <td> {{$demande->etat_dossier}} </td>
+                                <td>
+                                    @if($demande->resultats != null)
+                                    @foreach (json_decode($demande->resultats) as $res)
+                                    <a href="{{ $res }}" target="_blank"> <i class="fa fa-file-pdf-o"
+                                            style="font-size:25px;color:red"></i>
+                                        @endforeach
+                                        @endif
+                                </td>
                                 <td class="text-center" style="display: flex;">
-                                    @if($demande->etat_dossier == 'en codurs')
+                                    @if($demande->etat_dossier == 'en cours')
                                     <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm">
                                         update
                                     </a>
@@ -207,6 +216,8 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
 
 
 

@@ -82,7 +82,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('all_employees') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
-                        Liste employés
+                        Liste correspondants
                     </a>
                 </li>
                 @endif

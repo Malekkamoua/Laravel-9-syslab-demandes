@@ -37,9 +37,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Nom prénom</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Laboratoire</th>
+                                <th scope="col">Email</th>
                                 <th scope="col" class="text-center align-middle">Demandes realisées</th>
                             </tr>
                         </thead>
@@ -48,9 +47,8 @@
 
                             <tr>
                                 <td> {{ $employee->id}} </td>
-                                <td> {{ $employee->name}}</td>
-                                <td> {{ $employee->email}}</td>
                                 <td> {{ $employee->code_labo}} </td>
+                                <td> {{ $employee->email}}</td>
                                 <td class="text-center align-middle">
                                     <a href=" {{ url('correspondants/'.$employee->id.'/demandes') }}"
                                         class="btn btn-info btn-sm">
@@ -82,9 +80,9 @@
                 <div class="modal-body">
                     <form action="correspondants/add" method="post">
                         {{ csrf_field() }}
-                        Nom prénom: <input type="text" id="code" name="name" class="form-control">
+                        <input type="text" value="none" name="name" class="form-control" hidden>
                         Email <input type="text" name="email" id="name" class="form-control">
-                        Code laboratoir: <input type="text" id="nature_cond" name="code_labo" class="form-control">
+                        Code laboratoire: <input type="text" id="nature_cond" name="code_labo" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">enregistrer</button>
