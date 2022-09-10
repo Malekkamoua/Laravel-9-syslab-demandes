@@ -5,21 +5,14 @@
 
 <div class="container mt--8 pb-5">
     <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7" style="position: relative;top: -140px;">
+        <div class="col-lg-5 col-md-7" style="position: relative;top: -220px;">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent pb-5">
-                    <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Sign in with') }}</small></div>
+                    <div class="text-muted text-center mt-2 mb-3"> <small>Laboratoire Najib Barouni</small>
+                    </div>
                     <div class="btn-wrapper text-center">
-                        <a href="#" class="btn btn-neutral btn-icon">
-                            <span class="btn-inner--icon"><img
-                                    src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
-                            <span class="btn-inner--text">{{ __('Github') }}</span>
-                        </a>
-                        <a href="#" class="btn btn-neutral btn-icon">
-                            <span class="btn-inner--icon"><img
-                                    src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
-                            <span class="btn-inner--text">{{ __('Google') }}</span>
-                        </a>
+                        <img src="https://barounilab.com/wp-content/uploads/2021/11/cropped-logo-BAROUNI.png"
+                            alt="logo">
                     </div>
                 </div>
                 <div class="card-body px-lg-5 py-lg-5">
@@ -61,17 +54,12 @@
                             <button type="submit" class="btn btn-primary my-4">Connexion</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
                     @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="text-light">
+                    <a href="{{ route('password.request') }}">
                         <small>Mot de passe oublié? </small>
                     </a>
                     @endif
                 </div>
-
             </div>
         </div>
     </div>

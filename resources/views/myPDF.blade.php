@@ -1,4 +1,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+<style>
+* {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+</style>
 
 <center> <img src="https://barounilab.com/wp-content/uploads/2021/11/cropped-logo-BAROUNI.png" alt="logo"></center>
 <h6>
@@ -17,7 +25,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Informations du patient: {{ $demande->id }}</h5>
+                                <h5>Informations du patient: {{ $demande->id }} | {{$demande->code_labo}}</h5>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6">

@@ -9,32 +9,9 @@ passe tout en sécurité'),
 'class' => 'col-lg-7'
 ])
 
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--8">
     <div class="row">
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="card-body pt-0 pt-md-4">
-
-                    <div class="text-center">
-                        <h3>
-                            {{ auth()->user()->name }}<span class="font-weight-light">, 27</span>
-                        </h3>
-                        <div class="h5 font-weight-300">
-                            <i class="ni location_pin mr-2"></i>{{ __('Bucharest, Romania') }}
-                        </div>
-                        <div class="h5 mt-4">
-                            <i
-                                class="ni business_briefcase-24 mr-2"></i>{{ __('Solution Manager - Creative Tim Officer') }}
-                        </div>
-                        <div>
-                            <i class="ni education_hat mr-2"></i>{{ __('University of Computer Science') }}
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-8 order-xl-1">
+        <div class="col-xl-12 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
@@ -113,7 +90,7 @@ passe tout en sécurité'),
                                     for="input-current-password">{{ __('Ancien mot de passe') }}</label>
                                 <input type="password" name="old_password" id="input-current-password"
                                     class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('Current Password') }}" value="" required>
+                                    required>
 
                                 @if ($errors->has('old_password'))
                                 <span class="invalid-feedback" role="alert">
@@ -126,7 +103,7 @@ passe tout en sécurité'),
                                     for="input-password">{{ __('Nouveau mot de passe') }}</label>
                                 <input type="password" name="password" id="input-password"
                                     class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('New Password') }}" value="" required>
+                                    required>
 
                                 @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -138,8 +115,7 @@ passe tout en sécurité'),
                                 <label class="form-control-label"
                                     for="input-password-confirmation">{{ __('Confirmer nouveau mot de passe') }}</label>
                                 <input type="password" name="password_confirmation" id="input-password-confirmation"
-                                    class="form-control form-control-alternative"
-                                    placeholder="{{ __('Confirm New Password') }}" value="" required>
+                                    class="form-control form-control-alternative" required>
                             </div>
 
                             <div class="text-center">
