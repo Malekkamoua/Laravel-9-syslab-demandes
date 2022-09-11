@@ -31,6 +31,7 @@
                         </button>
                     </div>
                 </div>
+                @include('flash-message')
                 <!-- Light table -->
                 <div class="table-responsive" style="width:100%; margin:1%">
                     <table id="example" class="display hover table align-items-center table-flush">
@@ -99,7 +100,5 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-
-
 
 @endpush

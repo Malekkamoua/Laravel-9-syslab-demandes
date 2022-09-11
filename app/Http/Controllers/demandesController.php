@@ -19,7 +19,7 @@ class demandescontroller extends Controller
             $total = sizeof(Demande::all());
 
         } else{
-            $demandes = Demande::where(['correspondant'=> $user->id])->paginate(25);
+            $demandes = Demande::where(['correspondant'=> $user->id])->orderBy('created_at', 'desc')->paginate(25);
             $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours', 'correspondant'=> $user->id])->get());
             $total_final = sizeof(Demande::where(['etat_dossier'=> 'final', 'correspondant'=> $user->id])->get());
             $total = sizeof(Demande::where(['correspondant'=> $user->id])->get());
@@ -89,11 +89,7 @@ class demandescontroller extends Controller
 
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'desc')->paginate(25);
-
-        return view('demandes', [
-            'demandes' => $demandes
-        ]);
+        return back()->with('success','Demande ajoutée avec succés');
     }
 
     public function edit(Request $request, $id) {
@@ -102,7 +98,7 @@ class demandescontroller extends Controller
 
         $demande = Demande::find($id);
 
-        if($demande->etat_dossier == "en cours" && $user->role == "corr") {
+        if($demande->etat_dossier == "final" && $user->role == "corr") {
                 $demande->etat_dossier = 'lu';
                 $demande->save();
             }
@@ -165,15 +161,17 @@ class demandescontroller extends Controller
         $demande->analyses = json_encode($analyses_db_array);
 
         $demande->correspondant = $user->id;
-        $demande->code_labo = $user->code_labo;
+
+        if($user->code_labo != null) {
+            $demande->code_labo = $user->code_labo;
+        }else {
+            $demande->code_labo = $demande->code_labo;
+        }
 
         $demande->save();
 
-        $demandes = Demande::orderBy('created_at', 'desc')->paginate(25);
+        return back()->with('success','Demande mise à jour avec succés');
 
-        return view('demandes', [
-            'demandes' => $demandes
-        ]);
     }
 
     public function findeById($id) {
@@ -196,7 +194,7 @@ class demandescontroller extends Controller
             $total = sizeof(Demande::all());
 
         } else{
-            $demandes = Demande::where(['etat_dossier'=> $etat_dossier, 'correspondant'=> $user->id])->paginate(25);
+            $demandes = Demande::where(['etat_dossier'=> $etat_dossier, 'correspondant'=> $user->id])->orderBy('created_at', 'desc')->paginate(25);
             $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours', 'correspondant'=> $user->id])->get());
             $total_final = sizeof(Demande::where(['etat_dossier'=> 'final', 'correspondant'=> $user->id])->get());
             $total = sizeof(Demande::where(['correspondant'=> $user->id])->get());

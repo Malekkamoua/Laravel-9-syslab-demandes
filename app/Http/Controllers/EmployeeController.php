@@ -13,7 +13,7 @@ class EmployeeController extends Controller
 
     public function AllEmployees() {
 
-        $employees = User::where('role', 'corr')->paginate(25);
+        $employees = User::where('role', 'corr')->orderBy('created_at', 'desc')->paginate(25);
 
          return view('employees', [
             'employees' => $employees
@@ -32,19 +32,16 @@ class EmployeeController extends Controller
 
         $correspondant->save();
 
-        $employees = User::where('role', 'corr')->paginate(25);
+        return back()->with('success','Correspondant ajouté avec succés');
 
-         return view('employees', [
-            'employees' => $employees
-        ]);
     }
 
     public function findByUser($id) {
 
             $demandes = Demande::where(['correspondant'=> $id])->orderBy('created_at', 'desc')->paginate(25);
-            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours'])->get());
-            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final'])->get());
-            $total = sizeof(Demande::all());
+            $total_en_cours = sizeof(Demande::where(['etat_dossier'=> 'en cours', 'correspondant'=> $id])->get());
+            $total_final = sizeof(Demande::where(['etat_dossier'=> 'final', 'correspondant'=> $id])->get());
+            $total = sizeof(Demande::where(['correspondant'=> $id])->get());
 
            return view('demandes', [
             'demandes' => $demandes,

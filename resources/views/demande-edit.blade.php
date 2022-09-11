@@ -12,6 +12,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
+                                @include('flash-message')
                                 <h5>Informations du patient</h5>
                                 <hr>
                                 <form action="{{ url('/update/'.$demande->id) }}" method="post">
@@ -23,17 +24,17 @@
                                                 <div class="form-group">
                                                     <label>N° carte patient</label>
                                                     <input type="number" min=0 name="num_carte" class="form-control"
-                                                        value="{{ $demande->num_carte }}">
+                                                        value="{{ $demande->num_carte }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nom</label>
                                                     <input type="text" name="nom" class="form-control"
-                                                        value="{{ $demande->nom }}">
+                                                        value="{{ $demande->nom }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Prenom</label>
                                                     <input type="text" name="prenom" class="form-control"
-                                                        value="{{ $demande->prenom }}">
+                                                        value="{{ $demande->prenom }}" required>
                                                 </div>
 
                                             </div>
@@ -41,18 +42,19 @@
                                                 <div class="form-group">
                                                     <label>Numéro dossier interne</label>
                                                     <input type="number" min=0 name="num_dossier" class="form-control"
-                                                        value="{{ $demande->num_dossier }}">
+                                                        value="{{ $demande->num_dossier }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Date de naissance</label>
                                                     <input type="date" name="ddn" class="form-control"
-                                                        value="{{ $demande->ddn }}">
+                                                        value="{{ $demande->ddn }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleFormControlSelect1">Sexe</label>
                                                     <select name="sexe" class="form-control">
 
-                                                        <option value="{{ $demande->sexe }}">{{ $demande->sexe }}
+                                                        <option value="{{ $demande->sexe }}" required>
+                                                            {{ $demande->sexe }}
                                                         </option>
                                                         <option value="" disabled> -------- </option>
                                                         <option value="Homme">Homme</option>
@@ -69,12 +71,12 @@
                                                 <div class="form-group">
                                                     <label>Date du prélevement</label>
                                                     <input name="date_prelev" type="datetime-local" class="form-control"
-                                                        value="{{ $demande->date_prelev }}">
+                                                        value="{{ $demande->date_prelev }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nombre de tubes</label>
                                                     <input type="number" name="nb_tubes" min=0 class="form-control"
-                                                        value="{{ $demande->nb_tubes }}">
+                                                        value="{{ $demande->nb_tubes }}" required>
                                                 </div>
 
                                                 <div class="form-row">
@@ -98,7 +100,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="exampleFormControlSelect1">Type dossier</label>
-                                                            <select name="type_dossier" class="form-control">
+                                                            <select name="type_dossier" class="form-control" required>
                                                                 <option value="{{ $demande->type_dossier }}">
                                                                     {{ $demande->type_dossier }}
                                                                 </option>
@@ -115,7 +117,7 @@
                                                         <div class="form-group">
                                                             <label for="exampleFormControlSelect1">Analyses</label>
                                                             <select name="analyses[]" class="form-control selectpicker"
-                                                                multiple data-actions-box="true">
+                                                                multiple data-actions-box="true" required>
                                                                 @foreach($selected_analyses as $selected_analyse)
                                                                 <option value="{{$selected_analyse->code}}" selected>
                                                                     {!!
@@ -176,6 +178,7 @@
                                                     <textarea class="form-control" name="commentaires"
                                                         rows="3">{{ $demande->commentaires }}</textarea>
                                                 </div>
+                                                <input type="hidden" name="code_labo" value="{{$demande->code_labo}}" />
                                             </div>
                                         </div>
 

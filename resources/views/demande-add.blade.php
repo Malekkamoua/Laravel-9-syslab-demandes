@@ -12,6 +12,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
+                                @include('flash-message')
                                 <h5>Informations du patient</h5>
                                 <hr>
                                 <form action="/store" method="post">
@@ -64,11 +65,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Date du prélevement</label>
-                                                <input name="date_prelev" type="datetime-local" class="form-control">
+                                                <input name="date_prelev" type="datetime-local" class="form-control"
+                                                    required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Nombre de tubes</label>
-                                                <input type="number" name="nb_tubes" min=0 class="form-control">
+                                                <input type="number" name="nb_tubes" min=0 class="form-control"
+                                                    required>
                                             </div>
 
                                             <div class="form-row">
@@ -89,7 +92,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Type dossier</label>
-                                                        <select name="type_dossier" class="form-control">
+                                                        <select name="type_dossier" class="form-control" required>
                                                             <option value="Urgent">Urgent</option>
                                                             <option value="Normal">Normal</option>
                                                         </select>
@@ -102,7 +105,8 @@
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Analyses</label>
                                                         <select name="analyses[]" class="form-control selectpicker"
-                                                            multiple data-live-search="true" style="height:50px;">
+                                                            multiple data-live-search="true" style="height:50px;"
+                                                            required>
                                                             <option value=""></option>
                                                             @foreach($analyses as $analyse)
                                                             <option value="{{$analyse->code}}"> {!!
@@ -177,7 +181,7 @@
 
 
 <script>
-$(document).ready(function() {
+$(documen t).ready(function() {
     $('select').selectpicker();
 })
 </script>

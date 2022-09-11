@@ -73,7 +73,7 @@
                         <div class="col">
                             @if ($final != 0)
                             <div class="card-title text-uppercase text-muted mb-0">
-                                <a href=" {{ url('consulter/demandes/finales') }}"
+                                <a href=" {{ url('consulter/demandes/final') }}"
                                     class=" card-title text-uppercase text-muted mb-0 blink blink-one"
                                     style="font-size:13px;">
                                     Nouvelles demandes traitées
@@ -110,6 +110,7 @@
                         @endif
                     </div>
                 </div>
+                @include('flash-message')
                 <!-- Light table -->
                 <div class="table-responsive" style="width:100%; margin:1%">
                     <table id="example" class="display hover table align-items-center table-flush">
@@ -187,6 +188,7 @@
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
+        "ordering": false,
         paging: false,
         info: false,
         "language": {
