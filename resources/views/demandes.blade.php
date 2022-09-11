@@ -117,6 +117,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col">LABO</th>
                                 <th scope="col">Num dossier</th>
                                 <th scope="col">Patient</th>
                                 <th scope="col">Date prélévement</th>
@@ -130,6 +131,7 @@
                             @foreach($demandes as $demande)
                             <tr>
                                 <td>{{$demande->id}}</td>
+                                <td><b>{{$demande->code_labo}}</b></td>
                                 <td> {{$demande->num_dossier}} </td>
                                 <td>{{$demande->nom}} {{$demande->prenom}} </td>
                                 <td>{{$demande->date_prelev}}</td>
@@ -227,3 +229,4 @@ $(document).ready(function() {
 
 
 @endpush
+

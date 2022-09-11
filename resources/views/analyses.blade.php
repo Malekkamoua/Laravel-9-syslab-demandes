@@ -67,17 +67,15 @@
                                     <div class="modal-body">
                                         Code: <input type="text" id="code" name="code" class="form-control" value="">
                                         Libellé <input type="text" name="name" id="name" value="" class="form-control">
-                                        Nature: <input type="text" id="nature_cond" name="nature_cond"
-                                            class="form-control" value="">
+                                        <label for="exampleFormControlTextarea1">Commentaires
+                                            supplémentaires</label>
+                                        <textarea class="form-control" id="nature_cond" name="nature_cond"
+                                            rows="4"></textarea>
+
                                         Concervation <input type="text" name="concervation" id="concervation" value=""
                                             class="form-control">
                                         Delais: <input type="text" id="delai" name="delai" class="form-control"
                                             value="">
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">x</button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -153,5 +151,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 @endpush
