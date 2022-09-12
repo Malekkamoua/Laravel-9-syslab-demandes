@@ -76,12 +76,12 @@
                                 <a href=" {{ url('consulter/demandes/final') }}"
                                     class=" card-title text-uppercase text-muted mb-0 blink blink-one"
                                     style="font-size:13px;">
-                                    Nouvelles demandes traitées
+                                    Résultats prêts
                                 </a>
                             </div>
                             @else
                             <div class="card-title text-uppercase text-muted mb-0">
-                                <h5 class="card-title text-uppercase text-muted mb-0">Nouveau</h5>
+                                <h5 class="card-title text-uppercase text-muted mb-0"> Résultats prêts</h5>
                             </div>
                             @endif
                             <span class=" h2 font-weight-bold mb-0">{{$final}}</span>
@@ -229,4 +229,3 @@ $(document).ready(function() {
 
 
 @endpush
-

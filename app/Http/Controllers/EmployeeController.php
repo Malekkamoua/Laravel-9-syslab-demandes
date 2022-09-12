@@ -23,14 +23,20 @@ class EmployeeController extends Controller
     public function addCorrespondant(Request $request) {
 
         $correspondant = new User();
+        try {
 
-        $correspondant->name = $request->code_labo;
-        $correspondant->email = $request->email;
-        $correspondant->code_labo = $request->code_labo;
-        $correspondant->name = $request->name;
-        $correspondant->password = Hash::make('secret1234');
+            $correspondant->name = $request->code_labo;
+            $correspondant->email = $request->email;
+            $correspondant->code_labo = $request->code_labo;
+            $correspondant->name = $request->name;
+            $correspondant->password = Hash::make('secret1234');
 
-        $correspondant->save();
+            $correspondant->save();
+
+        } catch (\Exception $e) {
+
+            return back()->with('error','L\'email '.$request->email.' est déja utlisé');
+        }
 
         return back()->with('success','Correspondant ajouté avec succés');
 

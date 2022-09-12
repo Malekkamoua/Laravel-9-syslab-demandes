@@ -10,10 +10,14 @@
 
 <center> <img src="https://barounilab.com/wp-content/uploads/2021/11/cropped-logo-BAROUNI.png" alt="logo"></center>
 <h6>
-    <center>Laboratoire Nejib Barouni<br> Menzah 6 (Tél: 23 707 465)</center>
+    <center style="font-family: 'Trebuchet MS', sans-serif;">Laboratoire Nejib Barouni<br> Menzah 6 (Tél: 23 707 465)
+    </center>
 </h6>
 <h2>
-    <center>Fiche patient: {{ $demande->nom }} {{ $demande->prenom }}</center>
+    <center style="font-family: 'Trebuchet MS', sans-serif;">
+        Fiche patient: {{ $demande->nom }} {{ $demande->prenom }} <br>
+        Reference: {{ $demande->id }} - {{$demande->code_labo}}
+    </center>
 </h2>
 <br>
 <!-- Page content -->
@@ -25,7 +29,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Informations du patient: {{ $demande->id }} | {{$demande->code_labo}}</h5>
+                                <h5>Informations du patient</h5>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6">
