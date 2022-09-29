@@ -71,32 +71,37 @@
 
                 @if (auth()->user()->role == 'admin')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('all_employees') }}">
+                    <a class="nav-link" href="{{ route('all-employees') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
-                        Liste correspondants
+                        Liste des correspondants
                     </a>
                 </li>
                 @endif
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('all_analyses') }}">
+                    <a class="nav-link" href="{{ route('all-analyses') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
-                        Liste analyses
+                        Liste des analyses
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('demandes') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
-                        <span class="nav-link-text">Liste demandes</span>
+                        <span class="nav-link-text">Liste des demandes</span>
                     </a>
                 </li>
+
+                @if (auth()->user()->role != 'admin')
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('demande-add') }}">
                         <i class="ni ni-bullet-list-67 text-default"></i>
                         Ajouter une demande
                     </a>
                 </li>
+
+                @endif
 
             </ul>
         </div>

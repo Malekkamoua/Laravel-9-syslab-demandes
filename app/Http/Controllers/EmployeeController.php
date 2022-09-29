@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class EmployeeController extends Controller
-{
+class EmployeeController extends Controller {
 
     public function AllEmployees() {
 
@@ -25,10 +24,9 @@ class EmployeeController extends Controller
         $correspondant = new User();
         try {
 
-            $correspondant->name = $request->code_labo;
+            $correspondant->name = $request->name;
             $correspondant->email = $request->email;
             $correspondant->code_labo = $request->code_labo;
-            $correspondant->name = $request->name;
             $correspondant->password = Hash::make('secret1234');
 
             $correspondant->save();
@@ -42,6 +40,38 @@ class EmployeeController extends Controller
 
     }
 
+    //returns correspondant by id
+    public function findByid($id) {
+
+        $correspondant = User::where('id', $id)->first();
+
+        return response()->json([
+	      'correspondant' => $correspondant
+	    ]);
+    }
+
+     public function update(Request $request, $id) {
+
+        $correspondant = User::where('id', $id)->first();
+
+        try {
+
+            $correspondant->name = $request->name;
+            $correspondant->email = $request->email;
+            $correspondant->code_labo = $request->code_labo;
+
+            $correspondant->save();
+
+        } catch (\Exception $e) {
+
+            return back()->with('error','L\'email '.$request->email.'ou le code'.$request->code_labo.' est déja utlisé');
+        }
+
+        return back()->with('success','Correspondant mit à jours avec succés');
+
+    }
+
+    //returns demandes by user id
     public function findByUser($id) {
 
             $demandes = Demande::where(['correspondant'=> $id])->orderBy('created_at', 'desc')->paginate(25);
@@ -53,7 +83,8 @@ class EmployeeController extends Controller
             'demandes' => $demandes,
             'en_cours' => $total_en_cours,
             'final' => $total_final,
-            'total' =>$total
+            'total' =>$total,
+            'etat' => true
         ]);
     }
 }

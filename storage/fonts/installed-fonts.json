@@ -6,9 +6,9 @@
         "bold": "open_sans_bold_16020d134f3ca847d8cdba64e3e9ca33"
     },
     "roboto": {
-        "normal": "D:\\Syslab\\syslab_demandes\\storage\\fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
-        "500": "D:\\Syslab\\syslab_demandes\\storage\\fonts\/roboto_500_5774d6fb05eba3d096525f821dbe4137",
-        "bold": "roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
+        "normal": "\/home\/u402050600\/domains\/barounilab.com\/public_html\/soustraitance\/storage\/fonts\/roboto_normal_7bc701b343c10631f60048716b96e4f7",
+        "500": "roboto_500_5774d6fb05eba3d096525f821dbe4137",
+        "bold": "\/home\/u402050600\/domains\/barounilab.com\/public_html\/soustraitance\/storage\/fonts\/roboto_bold_8db5cb5d0586c1e891426d13097b1d04"
     },
     "roboto slab": {
         "normal": "roboto_slab_normal_86060135d7ee2e25e66ede3e2617126b"

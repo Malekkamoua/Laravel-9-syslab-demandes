@@ -23,7 +23,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>N° carte patient</label>
-                                                    <input type="number" min=0 name="num_carte" class="form-control"
+                                                    <input type="text" min=0 name="num_carte" class="form-control"
                                                         value="{{ $demande->num_carte }}" required>
                                                 </div>
                                                 <div class="form-group">
@@ -41,7 +41,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Numéro dossier interne</label>
-                                                    <input type="number" min=0 name="num_dossier" class="form-control"
+                                                    <input type="text" name="num_dossier" class="form-control"
                                                         value="{{ $demande->num_dossier }}" required>
                                                 </div>
                                                 <div class="form-group">
@@ -184,7 +184,8 @@
 
                                     </div>
                                     <div style="float:right">
-                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info btn-sm">
+                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" id="pdf_link"
+                                            class="btn btn-info btn-sm">
                                             PDF
                                         </a>
                                         @if($demande->etat_dossier == 'en cours')
@@ -204,12 +205,16 @@
 </div>
 @endsection
 
+@push('js')
 <script>
 $(document).ready(function() {
     $('select').selectpicker({
         noneSelectedText: 'Choisir le(s) analyses demandé(s)'
     });
 
-
+    $('form').on('keyup change paste', 'input, select, textarea', function() {
+        $("#pdf_link").remove();
+    });
 })
 </script>
+@endpush

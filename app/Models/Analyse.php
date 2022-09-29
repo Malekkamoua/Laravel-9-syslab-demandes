@@ -10,6 +10,8 @@ class Analyse extends Model
 {
     use HasFactory;
 
+    //protected $primaryKey = 'code';
+    public $timestamps = false;
 
     public function demande()
     {

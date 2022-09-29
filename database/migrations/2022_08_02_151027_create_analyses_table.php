@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('analyses', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('code');
             $table->string('nom');
             $table->string('nature_cond');

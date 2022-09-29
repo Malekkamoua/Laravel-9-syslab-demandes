@@ -44,9 +44,15 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
+                            @if (!$etat)
                             <h5 class="card-title text-uppercase text-muted mb-0"><a href=" {{ url('demandes') }}">Total
                                     Demandes</h5>
+                            @else
+                            <h5 class="card-title text-uppercase text-muted mb-0"><a>Total
+                                    Demandes</h5>
+                            @endif
                             <span class="h2 font-weight-bold mb-0">{{$total}}</span>
+
                         </div>
                     </div>
                 </div>
@@ -57,9 +63,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
+                            @if (!$etat)
                             <h5 class="card-title text-uppercase text-muted mb-0"> <a
                                     href=" {{ url('consulter/demandes/en%20cours') }}"> Demandes en cours </a></h5>
+                            @else
+                            <h5 class="card-title text-uppercase text-muted mb-0"> <a> Demandes en cours </a></h5>
+                            @endif
                             <span class="h2 font-weight-bold mb-0">{{$en_cours}}</span>
+
                         </div>
                     </div>
                 </div>
@@ -71,7 +82,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            @if ($final != 0)
+                            @if ($final != 0 && !$etat)
                             <div class="card-title text-uppercase text-muted mb-0">
                                 <a href=" {{ url('consulter/demandes/final') }}"
                                     class=" card-title text-uppercase text-muted mb-0 blink blink-one"
@@ -100,7 +111,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Liste demandes</h3>
+                            <h3 class="mb-0">Liste des demandes</h3>
                         </div>
                         @if(auth()->user()->role == "corr")
                         <a href=" {{ url('demandes/ajouter') }}" style='position:relative; left:20%'
@@ -117,7 +128,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                @if(auth()->user()->role != "corr")
                                 <th scope="col">LABO</th>
+                                @endif
                                 <th scope="col">Num dossier</th>
                                 <th scope="col">Patient</th>
                                 <th scope="col">Date prélévement</th>
@@ -131,7 +144,9 @@
                             @foreach($demandes as $demande)
                             <tr>
                                 <td>{{$demande->id}}</td>
+                                @if(auth()->user()->role != "corr")
                                 <td><b>{{$demande->code_labo}}</b></td>
+                                @endif
                                 <td> {{$demande->num_dossier}} </td>
                                 <td>{{$demande->nom}} {{$demande->prenom}} </td>
                                 <td>{{$demande->date_prelev}}</td>
@@ -140,29 +155,32 @@
                                 <td>
                                     @if($demande->resultats != null)
                                     @foreach (json_decode($demande->resultats) as $res)
-                                    <a href="{{ $res }}" target="_blank"> <i class="fa fa-file-pdf-o"
+                                    <a href="{{ $res }}" target="_blank" class="results"> <i class="fa fa-file-pdf-o"
                                             style="font-size:25px;color:red"></i>
                                         @endforeach
                                         @endif
                                 </td>
                                 <td class="text-center" style="display: flex;">
                                     @if($demande->etat_dossier == 'en cours')
-                                    <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm">
-                                        update
+                                    <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm"
+                                        data-toggle="tooltip" data-placement="top" title="Mettre à jour">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                     <span>
                                         <form action="{{ url('/delete/'.$demande->id) }}" method="post">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="post">
 
-                                            <button class="btn btn-danger btn-sm">
-                                                delete
+                                            <button class="btn btn-danger btn-sm" data-toggle="tooltip"
+                                                data-placement="top" title="Supprimer">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </form>
                                     </span>
                                     @else
-                                    <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-success btn-sm">
-                                        Consulter
+                                    <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-success btn-sm"
+                                        data-toggle="tooltip" data-placement="top" title="Consulter">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                     @endif
                                 </td>
@@ -220,6 +238,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 
 

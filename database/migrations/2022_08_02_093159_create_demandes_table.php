@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('sexe');
-            $table->date('ddn');
+            $table->datetime('ddn');
             $table->string('num_carte');
             $table->string('num_dossier');
 
@@ -37,8 +37,8 @@ return new class extends Migration
             //Examen Trisomie 21
             $table->string('taille')->nullable();
             $table->string('poids')->nullable();
-            $table->date('ddr')->nullable();
-            $table->date('ddg')->nullable();
+            $table->datetime('ddr')->nullable();
+            $table->datetime('ddg')->nullable();
             $table->string('nb_foetus')->nullable();
 
             $table->string('commentaires')->nullable();

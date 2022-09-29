@@ -69,6 +69,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <b>Date du prélevement:</b>
+
                                             {{ $demande->date_prelev }}
                                         </div>
                                         <div class="form-group">
@@ -132,6 +133,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <b>Date dernier rendez-vous:</b>
+
                                         {{ $demande->ddr }}
                                         <br>
                                         <b>Date début grosesse:</b>

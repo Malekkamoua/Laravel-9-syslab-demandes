@@ -15,14 +15,14 @@
                                 @include('flash-message')
                                 <h5>Informations du patient</h5>
                                 <hr>
-                                <form action="/store" method="post">
+                                <form action="{{ route('store')  }}" method="post">
                                     {{ csrf_field() }}
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>N° carte patient</label>
-                                                <input type="number" min=0 name="num_carte" class="form-control"
+                                                <input type="text" min=0 name="num_carte" class="form-control"
                                                     placeholder="Numéro carte patient" required>
                                             </div>
                                             <div class="form-group">
@@ -40,7 +40,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Numéro dossier interne</label>
-                                                <input type="number" min=0 name="num_dossier" class="form-control"
+                                                <input type="text" min=0 name="num_dossier" class="form-control"
                                                     placeholder="Num dossier interne" required>
                                             </div>
                                             <div class="form-group">
@@ -179,9 +179,13 @@
 </div>
 @endsection
 
+@push('js')
 
 <script>
 $(documen t).ready(function() {
-    $('select').selectpicker();
+    $('select').selectpicker({
+        noneSelectedText: 'Choisir le(s) analyses demandé(s)'
+    });
 })
 </script>
+@endpush

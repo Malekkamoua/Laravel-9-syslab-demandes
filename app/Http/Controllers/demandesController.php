@@ -29,7 +29,8 @@ class demandescontroller extends Controller
             'demandes' => $demandes,
             'en_cours' => $total_en_cours,
             'final' => $total_final,
-            'total' =>$total
+            'total' =>$total,
+            'etat' => false
         ]);
     }
 
@@ -205,7 +206,8 @@ class demandescontroller extends Controller
             'demandes' => $demandes,
             'en_cours' => $total_en_cours,
             'final' => $total_final,
-            'total' =>$total
+            'total' =>$total,
+            'etat' => false
         ]);
     }
 
@@ -214,6 +216,6 @@ class demandescontroller extends Controller
         $demande = Demande::findOrFail($id);
         $demande->delete();
 
-        return back()->with('success','Demande supprimés avec succés');
+        return back()->with('success','Demande supprimée avec succés');
     }
 }

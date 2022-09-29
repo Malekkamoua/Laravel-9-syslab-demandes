@@ -25,7 +25,7 @@
                         </div>
 
                         <button type="button" style='position:relative; left:17%' class="btn btn-info btn-sm"
-                            data-toggle="modal" data-target="#exampleModal">
+                            data-toggle="modal" data-target="#practice_modal">
                             Ajouter correspondant
 
                         </button>
@@ -39,9 +39,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col">Libellé</th>
                                 <th scope="col">Laboratoire</th>
                                 <th scope="col">Email</th>
-                                <th scope="col" class="text-center align-middle">Demandes realisées</th>
+                                <th scope="col" class="text-center align-middle">Demandes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,17 +50,23 @@
 
                             <tr>
                                 <td> {{ $employee->id}} </td>
+                                <td>
+                                    <a href="" id="editCompany" data-toggle="modal" data-target='#practice_modal'
+                                        data-id="{{ $employee->id }}">{{ $employee->name}}</a>
+                                </td>
                                 <td> {{ $employee->code_labo}} </td>
                                 <td> {{ $employee->email}}</td>
                                 <td class="text-center align-middle">
                                     <a href=" {{ url('correspondants/'.$employee->id.'/demandes') }}"
-                                        class="btn btn-info btn-sm">
-                                        Consulter
+                                        class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                                        title="Consulter">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                     <br><br>
                     <div style="float:right">{!! $employees->links() !!}</div>
@@ -69,7 +76,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="practice_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -82,9 +89,9 @@
                 <div class="modal-body">
                     <form action="correspondants/add" method="post">
                         {{ csrf_field() }}
-                        <input type="text" value="none" name="name" class="form-control" hidden>
-                        Email <input type="text" name="email" id="name" class="form-control" required>
-                        Code laboratoire: <input type="text" id="nature_cond" name="code_labo" class="form-control"
+                        Libellé <input type="text" name="name" id="name" class="form-control" required>
+                        Email <input type="text" name="email" id="email" class="form-control" required>
+                        Code laboratoire <input type="text" id="code_labo" name="code_labo" class="form-control"
                             required>
                 </div>
                 <div class="modal-footer">
@@ -103,6 +110,24 @@
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
-
+<script>
+$(document).ready(function() {
+    console.log("working")
+    $("#example a").click(function() {
+        let id = $(this).data('id');
+        $('#exampleModalLabel').text("Mettre à jours");
+        $.get('http://soustraitance.barounilab.com/public/correspondant/' + id, function(data) {
+            console.log(data);
+            $('#practice_modal').modal('show');
+            action = 'http://soustraitance.barounilab.com/public/correspondants/update/' + id
+            console.log(action)
+            $('form').attr('action', action);
+            $('#code_labo').val(data.correspondant.code_labo);
+            $('#name').val(data.correspondant.name);
+            $('#email').val(data.correspondant.email);
+        })
+    });
+});
+</script>
 
 @endpush
