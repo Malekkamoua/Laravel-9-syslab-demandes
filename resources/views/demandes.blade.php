@@ -122,6 +122,16 @@
                     </div>
                 </div>
                 @include('flash-message')
+                <form action="{{ route('searchDemandes') }}" method="get">
+                    <div class="form-group col-md-7" style="display:flex; float:right">
+                        <input type="text" class="form-control" name="search" style="margin-right:1%; height:30px"
+                            placeholder="Recherche par nom du patient, numéro ou état dossier" />
+                        <button type=" submit" class="btn btn-sm btn-info" style="margin-right:1%;">Recherche</button>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-trash" aria-hidden="true"
+                                data-toggle="tooltip" data-placement="top" title="Supprimer filtre"
+                                onClick="location.reload();"></i></button>
+                    </div>
+                </form>
                 <!-- Light table -->
                 <div class="table-responsive" style="width:100%; margin:1%">
                     <table id="example" class="display hover table align-items-center table-flush">
@@ -215,9 +225,10 @@
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
-        "ordering": false,
+        ordering: false,
         paging: false,
         info: false,
+        searching: false,
         "language": {
             "sProcessing": "Traitement en cours ...",
             "sLengthMenu": "Afficher _MENU_ lignes",

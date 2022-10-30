@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\analysesController;
 use App\Http\Controllers\demandesController;
 use App\Http\Controllers\CustomAuthController;
@@ -38,6 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('/profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
+    Route::get('/analyses/search/', [SearchController::class,'searchAnalyses'])->name('searchAnalyses');
+    Route::get('/demandes/search/', [SearchController::class,'searchDemandes'])->name('searchDemandes');
+    Route::get('/correspondants/search/', [SearchController::class,'searchCorrespondants'])->name('searchCorrespondants');
 
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('/correspondants/', 'App\Http\Controllers\EmployeeController@AllEmployees')->name('all-employees');

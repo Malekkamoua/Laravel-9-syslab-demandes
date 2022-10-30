@@ -33,6 +33,17 @@
                 </div>
                 @include('flash-message')
 
+                <form action="{{ route('searchAnalyses') }}" method="get">
+                    <div class="form-group col-md-6" style="display:flex; float:right">
+                        <input type="text" class="form-control" name="search" style="margin-right:1%; height:30px"
+                            placeholder="Recherche par code ou libelle analyse" />
+                        <button type=" submit" class="btn btn-sm btn-info" style="margin-right:1%;">Recherche</button>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-trash" aria-hidden="true"
+                                data-toggle="tooltip" data-placement="top" title="Supprimer filtre"
+                                onClick="location.reload();"></i></button>
+                    </div>
+                </form>
+
                 <!-- Light table -->
                 <div class="table-responsive" style="width:100%; margin:1%">
                     <table id="example" class="display hover table align-items-center table-flush">
@@ -159,6 +170,7 @@ $(document).ready(function() {
         order: false,
         paging: false,
         info: false,
+        searching: false,
         "language": {
             "sProcessing": "Traitement en cours ...",
             "sLengthMenu": "Afficher _MENU_ lignes",
@@ -186,6 +198,8 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
 
 
 
