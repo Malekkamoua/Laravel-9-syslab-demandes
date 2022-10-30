@@ -13,7 +13,12 @@
                         <div class="card">
                             <div class="card-body">
                                 @include('flash-message')
+
                                 <h5>Informations du patient</h5>
+                                <a href=" {{ url('demande/pdf/'.$demande->id) }}" class="btn btn-info btn-sm pdf_link"
+                                    style="position:relative; top:10px; right:-90%">
+                                    Imprimer PDF
+                                </a>
                                 <hr>
                                 <form action="{{ url('/update/'.$demande->id) }}" method="post">
                                     {{ csrf_field() }}
@@ -80,17 +85,17 @@
                                                 </div>
 
                                                 <div class="form-row">
-                                                    <div class="form-group col-md-3">
+                                                    <div class="form-group col-md-4">
                                                         <label for="inputCity">Température ambiante</label>
                                                         <input type=number name="t_amb" min=0 class="form-control"
                                                             value="{{ $demande->t_ambiante }}">
                                                     </div>
-                                                    <div class="form-group col-md-3">
+                                                    <div class="form-group col-md-4">
                                                         <label for="inputZip"> Refrégeré</label>
                                                         <input type=number name="t_ref" min=0 class="form-control"
                                                             value="{{ $demande->t_ref }}">
                                                     </div>
-                                                    <div class="form-group col-md-3">
+                                                    <div class="form-group col-md-4">
                                                         <label for="inputZip">Congelé</label>
                                                         <input type=number name="t_cong" min=0 class="form-control"
                                                             value="{{ $demande->t_cong }}">
@@ -143,7 +148,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Date dernier rendez-vous</label>
+                                                    <label>Date dernières regles</label>
                                                     <input type="date" name="ddr" class="form-control"
                                                         value="{{ $demande->ddr }}">
                                                 </div>
@@ -153,7 +158,6 @@
                                                     <input type="date" name="ddg" class="form-control"
                                                         value="{{ $demande->ddg }}">
                                                 </div>
-
                                                 <div class="form-row">
                                                     <div class="form-group col-md-4">
                                                         <label>Nombre de foetus</label>
@@ -161,14 +165,60 @@
                                                             value="{{ $demande->nb_foetus }}">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputCity">Taille</label>
+                                                        <label for="inputCity">Taille patiente</label>
                                                         <input type="number" class="form-control" name="taille"
                                                             value="{{ $demande->taille }}">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <label for="inputZip">Poids</label>
+                                                        <label for="inputZip">Poids patiente</label>
                                                         <input type="number" class="form-control" name="poids"
                                                             value="{{ $demande->poids }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlSelect1">Type de grossesse</label>
+                                                    <select name="type_grossesse" class="form-control"
+                                                        id="exampleFormControlSelect1">
+                                                        <option value="{{ $demande->type_grossesse }}">
+                                                            {{ $demande->type_grossesse }}
+                                                        </option>
+                                                        <option value="" disabled> -------- </option>
+                                                        <option value="Spontanée">Spontanée</option>
+                                                        <option value="FIV">FIV</option>
+                                                        <option value="ICSI">ICSI</option>
+                                                        <option value="Dons d'ovule">Dons d'ovule</option>
+                                                        <option value="Inconnu">Inconnu</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Date échographie</label>
+                                                    <input type="date" name="date_echo" class="form-control"
+                                                        value="{{ $demande->date_echo }}">
+                                                </div>
+
+                                                Age échographique <br>
+                                                <div class="form-row" style="margin-top:7px">
+                                                    <div class=" form-group col-md-6">
+                                                        <input type="number" name="age_echo_sem" class="form-control"
+                                                            placeholder="semaines" value="{{ $demande->age_echo_sem }}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <input type="number" class="form-control" name="age_echo_jours"
+                                                            placeholder="jours" value="{{ $demande->age_echo_jours }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputZip">Clarté nucléale</label>
+                                                        <input type="text" name="clarte_nuc" class="form-control"
+                                                            value="{{ $demande->clarte_nuc }}">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputZip">LCC</label>
+                                                        <input type="text" class="form-control" name="lcc"
+                                                            value="{{ $demande->lcc }}">
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -184,9 +234,9 @@
 
                                     </div>
                                     <div style="float:right">
-                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}" id="pdf_link"
-                                            class="btn btn-info btn-sm">
-                                            PDF
+                                        <a href=" {{ url('demande/pdf/'.$demande->id) }}"
+                                            class="btn btn-info btn-sm pdf_link">
+                                            Imprimer PDF
                                         </a>
                                         @if($demande->etat_dossier == 'en cours')
                                         <input class="btn btn-success btn-sm" type="submit" value="Mettre à jour">
@@ -213,7 +263,7 @@ $(document).ready(function() {
     });
 
     $('form').on('keyup change paste', 'input, select, textarea', function() {
-        $("#pdf_link").remove();
+        $(".pdf_link").remove();
     });
 })
 </script>

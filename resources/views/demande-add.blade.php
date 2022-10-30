@@ -75,15 +75,15 @@
                                             </div>
 
                                             <div class="form-row">
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-4">
                                                     <label for="inputCity">Température ambiante</label>
                                                     <input type=number name="t_ambiante" min=0 class="form-control">
                                                 </div>
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-4">
                                                     <label for="inputZip"> Refrégeré</label>
                                                     <input type=number name="t_ref" min=0 class="form-control">
                                                 </div>
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-4">
                                                     <label for="inputZip">Congelé</label>
                                                     <input type=number name="t_cong" min=0 class="form-control">
                                                 </div>
@@ -125,7 +125,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Date dernier rendez-vous</label>
+                                                <label>Date dernières regles</label>
                                                 <input type="date" name="ddr" class="form-control">
                                             </div>
 
@@ -133,24 +133,60 @@
                                                 <label>Date début grosesse</label>
                                                 <input type="date" name="ddg" class="form-control">
                                             </div>
-
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <label>Nombre de foetus</label>
-                                                    <input type="number" name="nb_foetus" class="form-control"
-                                                        id="taille" placeholder="1">
+                                                    <input type="number" name="nb_foetus" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputCity">Taille</label>
-                                                    <input type="number" class="form-control" name="taille"
-                                                        placeholder="160cm">
+                                                    <label for="inputCity">Taille patiente</label>
+                                                    <input type="number" class="form-control" name="taille">
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputZip">Poids</label>
-                                                    <input type="number" class="form-control" name="poids"
-                                                        placeholder="56Kg">
+                                                    <label for="inputZip">Poids patiente</label>
+                                                    <input type="number" class="form-control" name="poids">
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Type de grossesse</label>
+                                                <select name="type_grossesse" class="form-control"
+                                                    id="exampleFormControlSelect1">
+                                                    <option value="Spontanée">Spontanée</option>
+                                                    <option value="FIV">FIV</option>
+                                                    <option value="ICSI">ICSI</option>
+                                                    <option value="Dons d'ovule">Dons d'ovule</option>
+                                                    <option value="Inconnu">Inconnu</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Date échographie</label>
+                                                <input type="date" name="date_echo" class="form-control">
+                                            </div>
+                                            Age échographique <br>
+                                            <div class="form-row" style="margin-top:7px">
+                                                <div class=" form-group col-md-6">
+                                                    <input type="number" name="age_echo_sem" class="form-control"
+                                                        placeholder="semaines">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <input type="number" class="form-control" name="age_echo_jours"
+                                                        placeholder="jours">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputZip">Clarté nucléale</label>
+                                                    <input type="text" name="clarte_nuc" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputZip">LCC</label>
+                                                    <input type="text" class="form-control" name="lcc">
+                                                </div>
+                                            </div>
+
                                             <hr>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Commentaires

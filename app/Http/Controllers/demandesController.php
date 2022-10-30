@@ -47,7 +47,6 @@ class demandescontroller extends Controller
         $user = Auth::user();
 
         $demande = new Demande;
-
         //Info patient
         $demande->nom = $request->input('nom');
         $demande->prenom = $request->input('prenom');
@@ -68,9 +67,18 @@ class demandescontroller extends Controller
         //Info trisomie
         $demande->poids = $request->input('poids');
         $demande->taille = $request->input('taille');
+
+        $demande->nb_foetus = $request->input('nb_foetus');
+        $demande->type_grossesse = $request->input('type_grossesse');
+
         $demande->ddr = $request->input('ddr');
         $demande->ddg = $request->input('ddg');
-        $demande->nb_foetus = $request->input('nb_foetus');
+        $demande->date_echo = $request->input('date_echo');
+        $demande->age_echo_sem = $request->input('age_echo_sem');
+        $demande->age_echo_jours = $request->input('age_echo_jours');
+
+        $demande->clarte_nuc = $request->input('clarte_nuc');
+        $demande->lcc = $request->input('lcc');
 
         //Autres
         $demande->commentaires = $request->input('commentaires');
@@ -89,8 +97,12 @@ class demandescontroller extends Controller
         $demande->code_labo = $user->code_labo;
 
         $demande->save();
+        $demande_id = $demande->id;
 
-        return back()->with('success','Demande ajoutée avec succés');
+        return redirect()->route('demande-edit', ['id' => $demande_id,
+        'success'=>'Demande ajoutée avec succés'
+        ])->with('success','Demande ajoutée avec succés');;
+
     }
 
     public function edit(Request $request, $id) {
@@ -144,9 +156,18 @@ class demandescontroller extends Controller
         //Info trisomie
         $demande->poids = $request->input('poids');
         $demande->taille = $request->input('taille');
+
+        $demande->nb_foetus = $request->input('nb_foetus');
+        $demande->type_grossesse = $request->input('type_grossesse');
+
         $demande->ddr = $request->input('ddr');
         $demande->ddg = $request->input('ddg');
-        $demande->nb_foetus = $request->input('nb_foetus');
+        $demande->date_echo = $request->input('date_echo');
+        $demande->age_echo_sem = $request->input('age_echo_sem');
+        $demande->age_echo_jours = $request->input('age_echo_jours');
+
+        $demande->clarte_nuc = $request->input('clarte_nuc');
+        $demande->lcc = $request->input('lcc');
 
         //Autres
         $demande->commentaires = $request->input('commentaires');
@@ -171,7 +192,8 @@ class demandescontroller extends Controller
 
         $demande->save();
 
-        return back()->with('success','Demande mise à jour avec succés');
+        return redirect()->route('demande-edit', ['id' => $demande->id
+        ])->with('success','Demande mise à jour avec succés');;
 
     }
 

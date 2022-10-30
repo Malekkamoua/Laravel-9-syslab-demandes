@@ -39,7 +39,13 @@ return new class extends Migration
             $table->string('poids')->nullable();
             $table->string('ddr')->nullable();
             $table->string('ddg')->nullable();
+            $table->string('date_echo')->nullable();
             $table->string('nb_foetus')->nullable();
+            $table->string('type_grossesse')->nullable();
+            $table->string('lcc')->nullable();
+            $table->string('clarte_nuc')->nullable();
+            $table->string('age_echo_sem')->nullable();
+            $table->string('age_echo_jours')->nullable();
 
             $table->string('commentaires')->nullable();
 

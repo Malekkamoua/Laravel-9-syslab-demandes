@@ -23,10 +23,12 @@
                         <div class="col-8">
                             <h3 class="mb-0">Liste des analyses disponibles</h3>
                         </div>
+                        @if(auth()->user()->role != "corr")
                         <button type="button" style='position:relative; left:22%' class="btn btn-info btn-sm"
                             data-toggle="modal" data-target="#practice_modal">
                             Ajouter analyse
                         </button>
+                        @endif
                     </div>
                 </div>
                 @include('flash-message')
@@ -46,7 +48,6 @@
                         </thead>
                         <tbody>
                             @foreach($analyses as $analyse)
-
                             <tr>
                                 <td>
                                     <a href="" id="editCompany" data-toggle="modal" data-target='#practice_modal'
@@ -57,6 +58,7 @@
                                 <td>{!! Str::words($analyse->concervation, 2, ' ...') !!} </td>
                                 <td>{{ $analyse->delai }} </td>
                                 <td>
+                                    @if(auth()->user()->role != "corr")
                                     <form action="{{ url('delete/analyse/'.$analyse->id) }}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="post">
@@ -66,6 +68,7 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -104,17 +107,14 @@
                                         <button type="submit" class="btn btn-primary">enregistrer</button>
                                     </div>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
                     </table>
                     <br><br>
-                    <div style=" float:right">{!! $analyses->links() !!}
+                    <div style="float:right">{!! $analyses->links() !!}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

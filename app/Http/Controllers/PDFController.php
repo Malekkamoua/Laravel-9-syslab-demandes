@@ -32,6 +32,7 @@ class PDFController extends Controller
         $date_prelev = Carbon::parse($demande->date_prelev)->format('d-m-Y h:m');
         $ddr = Carbon::parse($demande->ddr)->format('d-m-Y');
         $ddg = Carbon::parse($demande->ddg)->format('d-m-Y');
+        $date_echo = Carbon::parse($demande->date_echo)->format('d-m-Y');
         $created_at = Carbon::parse($demande->created_at)->format('d-m-Y');
 
         $data = [
@@ -40,13 +41,14 @@ class PDFController extends Controller
             'date_prelev' => $date_prelev,
             'ddr' => $ddr,
             'ddg' => $ddg,
+            'date_echo' => $date_echo,
             'created_at' => $created_at,
             'analyses' =>$analyses_db_array,
             'correspondant' => $correspondant
         ];
 
         $pdf = PDF::loadView('myPDF', $data);
-
-        return $pdf->download('demande_patient.pdf');
+        $title = 'Demande '.$demande->id.'_'.$demande->nom.' '.$demande->prenom.'.pdf';
+        return $pdf->download($title);
     }
 }

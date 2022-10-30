@@ -132,7 +132,7 @@
                 </tr>
             </tbody>
         </table>
-        <br><br>
+        <br>
         <div class="card">
             <div class="card-body">
                 <strong style="color: #0d3b66">Informations du patient</strong>
@@ -147,7 +147,7 @@
                                             N° carte patient<br>
                                             Nom <br>
                                             Prenom <br>
-                                            N° carte patient <br>
+                                            N° dossier <br>
                                             Date de naissance <br>
                                             Sexe <br>
                                         </td>
@@ -211,9 +211,7 @@
                 <strong class="mt-5" style="color: #0d3b66">Analyses demandées</strong> <br>
                 <div class="row">
 
-                    @foreach($analyses as $analyse)
-
-                    <table cellpadding="5" cellspacing="0">
+                    @for ($i = 0; $i < 2; $i++) <table cellpadding="5" cellspacing="0">
                         <tbody>
                             <tr>
                                 <td colspan="10">
@@ -226,25 +224,91 @@
                                                 Delais <br>
                                             </td>
                                             <td class="vendor_info">
-                                                {{ $analyse->nom }} <br>
-                                                {{ $analyse->nature_cond }} <br>
-                                                {{ $analyse->concervation }} <br>
-                                                {{ $analyse->delai }} <br>
+                                                {{ $analyses[$i]['nom'] }} <br>
+                                                {{ $analyses[$i]['nature_cond'] }} <br>
+                                                {{ $analyses[$i]['concervation'] }} <br>
+                                                {{ $analyses[$i]['delai'] }} <br>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                        </table>
 
-                    @endforeach
+                        @endfor
                 </div>
                 <br>
-                @if($demande->nb_foetus != 0)
+                @if($demande->nb_foetus != 0 AND count($analyses) >= 2)
+                <table cellpadding="5" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td colspan="10">
+                                <table>
+                                    <tr>
+                                        <td class="title">
+                                            <img src="https://barounilab.com/wp-content/uploads/2021/11/cropped-logo-BAROUNI.png"
+                                                style="width: 100%; max-width: 120px" />
+                                        </td>
+                                        <td class="habitat_address">
+                                            Laboratoire Mohamed Nejib Barouni<br>
+                                            Complex medical Farabi, El Menzah 6<br>
+                                            Tél: 23 707 465
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Demande #: {{ $demande->id }}<br>
+                                            Date creation: {{ $created_at}}<br>
+                                            Type dossier: <b>{{ $demande->type_dossier }} </b><br>
+
+                                        </td>
+                                        <td class="vendor_info">
+                                            <strong>{{$correspondant->name}} - {{$correspondant->code_labo}}
+                                            </strong><br>
+                                            <small> {{$correspondant->email}} </small>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                @if(count($analyses) > 2)
+                <strong class="mt-5" style="color: #0d3b66">Analyses demandées</strong> <br>
+                @endif
+                <div class="row">
+                    @for ($i = 2; $i < count($analyses); $i++) <table cellpadding="5" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td colspan="10">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Libellé<br>
+                                                Nature et condition<br>
+                                                Concervation <br>
+                                                Delais <br>
+                                            </td>
+                                            <td class="vendor_info">
+                                                {{ $analyses[$i]['nom'] }} <br>
+                                                {{ $analyses[$i]['nature_cond'] }} <br>
+                                                {{ $analyses[$i]['concervation'] }} <br>
+                                                {{ $analyses[$i]['delai'] }} <br>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+
+                        @endfor
+                </div>
+
                 <strong class="mt-5" style="color: #0d3b66">Trisomie 21</strong>
                 <hr>
-
                 <table cellpadding="5" cellspacing="0">
                     <tbody>
                         <tr>
@@ -254,16 +318,27 @@
                                         <td>
                                             Date dernières regles<br>
                                             Date début grosesse<br>
+                                            Date échographie<br>
                                             Nombre de foetus <br>
-                                            Taille <br>
-                                            Poids
+                                            Taille patiente <br>
+                                            Poids patiente <br>
+                                            Type de grossesse <br>
+                                            Age échographique <br>
+                                            Clarté nucléale <br>
+                                            LCC
                                         </td>
                                         <td class="vendor_info">
                                             {{ $ddr }} <br>
                                             {{ $ddg }} <br>
+                                            {{ $date_echo }} <br>
                                             {{ $demande->nb_foetus }} <br>
                                             {{ $demande->taille }} <br>
                                             {{ $demande->poids }} <br>
+                                            {{ $demande->type_grossesse }} <br>
+                                            {{ $demande->age_echo_sem }} semaines et {{ $demande->age_echo_jours }}
+                                            jours<br>
+                                            {{ $demande->clarte_nuc }} <br>
+                                            {{ $demande->lcc }}
                                         </td>
                                     </tr>
                                 </table>

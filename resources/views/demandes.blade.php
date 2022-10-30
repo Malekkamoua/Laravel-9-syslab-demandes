@@ -164,6 +164,10 @@
                                         @endif
                                 </td>
                                 <td class="text-center" style="display: flex;">
+                                    <a href=" {{ url('demande/pdf/'.$demande->id) }}" id="pdf_link"
+                                        class="btn btn-success btn-sm">
+                                        PDF
+                                    </a>
                                     @if($demande->etat_dossier == 'en cours')
                                     <a href=" {{ url('demande/edit/'.$demande->id) }}" class="btn btn-info btn-sm"
                                         data-toggle="tooltip" data-placement="top" title="Mettre à jour">
