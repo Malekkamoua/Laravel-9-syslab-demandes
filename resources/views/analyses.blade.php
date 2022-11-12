@@ -49,11 +49,11 @@
                     <table id="example" class="display hover table align-items-center table-flush">
                         <thead>
                             <tr>
-                                <th scope="col">Code</th>
-                                <th scope="col">Libellé</th>
-                                <th scope="col">Nature et condition</th>
-                                <th scope="col">Concervation</th>
-                                <th scope="col">delais</th>
+                                <th scope="col" style="font-size:12px;">Code</th>
+                                <th scope="col" style="font-size:12px;">Libellé</th>
+                                <th scope="col" style="font-size:12px;">Nature et condition</th>
+                                <th scope="col" style="font-size:12px;">Concervation</th>
+                                <th scope="col" style="font-size:12px;">delais</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

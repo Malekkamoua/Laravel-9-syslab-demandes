@@ -8,75 +8,70 @@ mot de passe en toute sécurité.'),
 'class' => 'col-lg-7'
 ])
 
-<div class="container-fluid mt--8">
+<div class="container-fluid mt--7">
     <div class="row">
+
         <div class="col-xl-12 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
-                        <h3 class="mb-0">{{ __('Editer Profil') }}</h3>
+                        <h3 class="mb-0">{{ __('Changer mot de passe') }}</h3>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+
+                    <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                         @csrf
                         @method('put')
 
-                        <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
-                            @csrf
-                            @method('put')
+                        @if (session('password_status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('password_status') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
 
-                            <h6 class="heading-small text-muted mb-4">{{ __('Mot de passe') }}</h6>
+                        <div class="pl-lg-4">
+                            <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-current-password">Mot de passe
+                                    actuel</label>
+                                <input type="password" name="old_password" id="input-current-password"
+                                    class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}"
+                                    value="" required>
 
-                            @if (session('password_status'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('password_status') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                @if ($errors->has('old_password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Le mot de passe que vous avez entré ne correspond pas à votre mot de
+                                        passe actuel.</strong>
+                                </span>
+                                @endif
                             </div>
-                            @endif
+                            <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                <label class="form-control-label" for="input-password">Nouveau mot de passe</label>
+                                <input type="password" name="password" id="input-password"
+                                    class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    value="" required>
 
-                            <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label"
-                                        for="input-current-password">{{ __('Ancien mot de passe') }}</label>
-                                    <input type="password" name="old_password" id="input-current-password"
-                                        class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}"
-                                        required>
-
-                                    @if ($errors->has('old_password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('old_password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                                <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label"
-                                        for="input-password">{{ __('Nouveau mot de passe') }}</label>
-                                    <input type="password" name="password" id="input-password"
-                                        class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        required>
-
-                                    @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label"
-                                        for="input-password-confirmation">{{ __('Confirmer nouveau mot de passe') }}</label>
-                                    <input type="password" name="password_confirmation" id="input-password-confirmation"
-                                        class="form-control form-control-alternative" required>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit"
-                                        class="btn btn-success mt-4">{{ __('Changer mot de passe') }}</button>
-                                </div>
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                                @endif
                             </div>
-                        </form>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-password-confirmation">Confirmer mot de
+                                    passe</label>
+                                <input type="password" name="password_confirmation" id="input-password-confirmation"
+                                    class="form-control form-control-alternative" value="" required>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-4">Confirmer</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

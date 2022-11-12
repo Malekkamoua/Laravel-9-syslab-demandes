@@ -137,18 +137,16 @@
                     <table id="example" class="display hover table align-items-center table-flush">
                         <thead>
                             <tr>
-
-
-                                <th scope="col">ID</th>
+                                <th scope="col" style="font-size:12px;">ID</th>
                                 @if(auth()->user()->role != "corr")
-                                <th scope="col">LABO</th>
+                                <th scope="col" style="font-size:12px;">LABO</th>
                                 @endif
-                                <th scope="col">Num dossier</th>
-                                <th scope="col">Patient</th>
-                                <th scope="col">Date prélévement</th>
-                                <th scope="col">Type dossier</th>
-                                <th scope="col">Etat dossier</th>
-                                <th scope="col">Résultats</th>
+                                <th scope="col" style="font-size:12px;">Num dossier</th>
+                                <th scope="col" style="font-size:12px;">Patient</th>
+                                <th scope="col" style="font-size:12px;">Date prélévement</th>
+                                <th scope="col" style="font-size:12px;">Type dossier</th>
+                                <th scope="col" style="font-size:12px;">Etat dossier</th>
+                                <th scope="col" style="font-size:12px;">Résultats</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

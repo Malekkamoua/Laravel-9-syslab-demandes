@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="card-body">
                                 @include('flash-message')
-                                <h5>Informations du patient</h5>
+                                <h3>Informations du patient</h3>
                                 <hr>
                                 <form action="{{ route('store')  }}" method="post">
                                     {{ csrf_field() }}
@@ -59,7 +59,7 @@
                                     </div>
 
 
-                                    <h5 class="mt-5">Renseignement clinique - traitement </h5>
+                                    <h3 class="mt-5">Renseignement clinique - traitement </h3>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
 
-                                    <h5 class="mt-5">Trisomie 21</h5>
+                                    <h3 class="mt-5">Trisomie 21</h3>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -178,7 +178,7 @@
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
-                                                    <label for="inputZip">Clarté nucléale</label>
+                                                    <label for="inputZip">Clarté nucale</label>
                                                     <input type="text" name="clarte_nuc" class="form-control">
                                                 </div>
                                                 <div class="form-group col-md-6">

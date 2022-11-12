@@ -47,10 +47,10 @@
                     <table id="example" class="display hover table align-items-center table-flush">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Libellé</th>
-                                <th scope="col">Laboratoire</th>
-                                <th scope="col">Email</th>
+                                <th scope="col" style="font-size:12px;">ID</th>
+                                <th scope="col" style="font-size:12px;">Libellé</th>
+                                <th scope="col" style="font-size:12px;">Laboratoire</th>
+                                <th scope="col" style="font-size:12px;">Email</th>
                                 <th scope="col" class="text-center align-middle">Demandes</th>
                             </tr>
                         </thead>
